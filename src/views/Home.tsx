@@ -1,8 +1,5 @@
 import { useEffect } from "react";
-import CardHome from "../components/CardHome";
-import Contacto from "../components/Contacto";
 import Footer from "../components/Footer";
-import RedesHome from "../components/RedesHome";
 import { Section } from "../components/Section";
 import Header from "../components/header";
 import { useNavigate } from "react-router-dom";
@@ -27,13 +24,13 @@ function Home() {
       <div className="flex-grow">
         <Header />
         <Section
-          tittle="Inicio"
-          description="Un Universo de Inspiración Literaria, Cinematográfica e Historias"
+          tittle="Timely"
+          description="Conectando estilistas y clientes para crear looks increíbles juntos."
         />
       </div>
-      <CardHome />
+      {/* <CardHome />
       <RedesHome />
-      <Contacto />
+      <Contacto /> */}
       <Footer />
     </div>
   );

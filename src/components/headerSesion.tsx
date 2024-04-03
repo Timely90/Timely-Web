@@ -29,7 +29,7 @@ function HeaderSesion() {
             <nav className="fixed w-full z-20 top-0 left-0 border-b border-gray-200 border-gray-600  bg-gray-900">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src="https://res.cloudinary.com/dol6yfeoi/image/upload/v1711906350/unnamed_ulj6qg.jpg" className="h-8" alt="Flowbite Logo" />
+                        <img src="https://res.cloudinary.com/dwc8h9wfn/image/upload/v1712153542/logo_tezv2v.png" className="h-8" alt="Flowbite Logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Woody</span>
                     </a>
                     <div className="flex md:order-2">
