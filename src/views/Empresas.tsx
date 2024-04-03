@@ -8,7 +8,7 @@ export interface UserData {
   email: string;
 }
 
-function Relatos() {
+function Empresas() {
 
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get("token");
@@ -34,12 +34,12 @@ function Relatos() {
   const tokens = localStorage.getItem("ACCESS_TOKEN");
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-white">
       <div className="flex-grow">
         {tokens ? <HeaderSesion /> : <Header />}
         <Section
-          tittle="Relatos"
-          description="Bienvenido a mi colección de relatos! Sumérgete en un mundo de narrativas cautivadoras, donde cada historia te transportará a lugares inesperados y te hará sentir una amplia gama de emociones."
+          tittle="Empresas"
+          description="¡Bienvenido a mi salón de estilismo! Sumérgete en un mundo de creatividad y tendencias que te llevarán a través de transformaciones emocionantes, estilos conmovedores y looks irresistiblemente divertidos."
         />
       </div>
       <Footer />
@@ -48,4 +48,4 @@ function Relatos() {
   );
 }
 
-export default Relatos;
+export default Empresas;

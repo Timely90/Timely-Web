@@ -8,7 +8,7 @@ export interface UserData {
   email: string;
 }
 
-function Peliculas() {
+function Servicios() {
 
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get("token");
@@ -19,7 +19,7 @@ function Peliculas() {
     localStorage.setItem("ACCESS_TOKEN", token);
   }
 
-  if (email !== null || name !== null) {
+  if (email !== null || name !== null ) {
     const sessionData: UserData = {
       name: name || '',
       email: email || '',
@@ -34,12 +34,12 @@ function Peliculas() {
   const tokens = localStorage.getItem("ACCESS_TOKEN");
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-white">
       <div className="flex-grow">
         {tokens ? <HeaderSesion /> : <Header />}
         <Section
-          tittle="Películas"
-          description="Bienvenido a mi selección de películas! Sumérgete en un mundo de emociones y experiencias cinematográficas que te llevarán a través de aventuras épicas, dramas conmovedores y comedias hilarantes."
+          tittle="Servicios"
+          description="Bienvenido a mi colección de estilos, donde la creatividad y la experiencia se fusionan para ofrecerte una transformación única."
         />
       </div>
       <Footer />
@@ -48,4 +48,4 @@ function Peliculas() {
   );
 }
 
-export default Peliculas;
+export default Servicios;

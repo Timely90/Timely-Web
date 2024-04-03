@@ -3,6 +3,9 @@ import Footer from "../components/Footer";
 import { Section } from "../components/Section";
 import Header from "../components/header";
 import { useNavigate } from "react-router-dom";
+import Contacto from "../components/Contacto";
+import RedesHome from "../components/RedesHome";
+import CardHome from "../components/CardHome";
 
 function Home() {
   const navigate = useNavigate();
@@ -11,7 +14,7 @@ function Home() {
 
   useEffect(() => {
     if (token) {
-      navigate("/woody-libros");
+      navigate("");
     }
   }, [token, navigate]);
 
@@ -20,7 +23,7 @@ function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-white ">
       <div className="flex-grow">
         <Header />
         <Section
@@ -28,9 +31,9 @@ function Home() {
           description="Conectando estilistas y clientes para crear looks increíbles juntos."
         />
       </div>
-      {/* <CardHome />
+      <CardHome />
       <RedesHome />
-      <Contacto /> */}
+      <Contacto />
       <Footer />
     </div>
   );

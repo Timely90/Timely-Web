@@ -1,63 +1,59 @@
 import { Link } from "react-router-dom";
 
 function CardHome() {
-    const card = [
-        {
-            id: 1,
-            enlace: "libros",
-            name: "Libros",
-            description: "Sumérgete en un mundo de aventuras, conocimiento y emociones con nuestra amplia selección de libros.",
-            nameImage: "https://neuronup.com/wp-content/uploads/2023/03/benficios-de-la-lectura.jpg",
-        },
-        {
-            id: 2,
-            enlace: "peliculas",
-            name: "Películas",
-            description: "Embárcate en un viaje cinematográfico a través de mi selección de películas. Desde emocionantes aventuras hasta dramas conmovedores y comedias hilarantes, tenemos algo para cada gusto y estado de ánimo.",
-            nameImage: "https://rccmedia.com.do/wp-content/uploads/2023/06/industria-del-cine.jpg",
-        },
-        {
-            id: 3,
-            enlace: "relatos",
-            name: "Relatos",
-            description: "Déjate cautivar por la magia de la narrativa con mi colección de relatos.",
-            nameImage: "https://img.freepik.com/fotos-premium/pluma-tintero-escritorio_488220-35438.jpg",
-        }
+  const card = [
+    {
+      id: 1,
+      enlace: "empresas",
+      name: "Empresas",
+      description:
+        "Sumérgete en un mundo de estilo, innovación y transformación con nuestra amplia selección de servicios y tratamientos.",
+      nameImage:
+        "https://www.ufv.es/cetys/blog/wp-content/uploads/2023/04/peluqueria-peluqueria-mujeres-trabajos-peluqueria-campana-profesional-scaled.jpg",
+    },
+    {
+      id: 2,
+      enlace: "servicios",
+      name: "Servicios",
+      description:
+        "Embárcate en un viaje estilístico a través de la selección de servicios. Desde cortes y peinados emocionantes hasta coloraciones impactantes y tratamientos relajantes, tenemos algo para cada estilo y necesidad.",
+      nameImage:
+        "https://www.ftccollege.edu/wp-content/uploads/2023/08/Cosmetologia.jpg",
+    },
+  ];
 
-    ];
-
-    return (
-        <div className="flex flex-wrap justify-center gap-4 mt-10 ml-5 mr-5">
-            {card.map((item) => (
-                <div
-                    key={item.id}
-                    className="max-w-sm border rounded-lg shadow hover:shadow-lg  bg-gray-800 border-gray-700 transition duration-300"
-                >
-                    <Link to={`woody-${item.enlace.toLowerCase()}`}>
-                        <img
-                            className="rounded-t-lg"
-                            src={item.nameImage}
-                            alt={item.name}
-                        />
-                    </Link>
-                    <div className="p-5">
-                        <Link to={`woody-${item.enlace.toLowerCase()}`}>
-                            <h5 className="mb-2 text-2xl font-bold tracking-tight  text-white">
-                                {item.name}
-                            </h5>
-                        </Link>
-                        <p className="mb-3 font-normal text-gray-400">{item.description}</p>
-                        <Link
-                            to={`woody-${item.enlace}`}
-                            className="text-white inline-flex items-center px-3 py-2 text-sm font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
-                        >
-                            Ver más
-                        </Link>
-                    </div>
-                </div>
-            ))}
+  return (
+    <div className="flex flex-wrap justify-center gap-4 mt-10 ml-5 mr-5">
+      {card.map((item) => (
+        <div
+          key={item.id}
+          className="max-w-sm border rounded-lg shadow hover:shadow-lg  bg-gray-800 border-gray-700 transition duration-300"
+        >
+          <Link to={`woody-${item.enlace.toLowerCase()}`}>
+            <img
+              className="rounded-t-lg"
+              src={item.nameImage}
+              alt={item.name}
+            />
+          </Link>
+          <div className="p-5">
+            <Link to={`timely-${item.enlace.toLowerCase()}`}>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight  text-white">
+                {item.name}
+              </h5>
+            </Link>
+            <p className="mb-3 font-normal text-gray-400">{item.description}</p>
+            <Link
+              to={`timely-${item.enlace}`}
+              className="text-white inline-flex items-center px-3 py-2 text-sm font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-red-400 bg-red-400 hover:bg-red-500 focus:ring-red-500"
+            >
+              Ver más
+            </Link>
+          </div>
         </div>
-    );
+      ))}
+    </div>
+  );
 }
 
 export default CardHome;

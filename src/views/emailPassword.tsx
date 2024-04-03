@@ -45,26 +45,26 @@ function EmailPassword() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-red-400">
       <div className="flex-grow">
         <Header />
       </div>
-      <div className="container flex flex-col mx-auto bg-gray-900 rounded-lg pt-14 h-screen">
+      <div className="container flex flex-col mx-auto bg-red-400 rounded-lg pt-14 h-screen">
         <div className="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
           <div className="flex items-center justify-center w-full lg:p-12">
             <div className="ml-2 mr-2 w-full h-full flex items-center xl:p-10">
-              <form onSubmit={handleSubmit} className={`mx-auto flex flex-col pb-6 text-center bg-gray-900 rounded-3xl ${windowWidth < 768 ? 'w-full' : ''}`}>
-                <h3 className="mb-3 text-4xl font-extrabold text-white">Recuperación</h3>
-                <p className="mb-4 text-white">Ingrese tu correo</p>
+              <form onSubmit={handleSubmit} className={`mx-auto flex flex-col pb-6 text-center bg-red-400 rounded-3xl ${windowWidth < 768 ? 'w-full' : ''}`}>
+                <h3 className="mb-3 text-4xl font-extrabold text-gray-900">Recuperación</h3>
+                <p className="mb-4 text-gray-900">Ingrese tu correo</p>
                 <p
                   id="MensajeErr"
-                  className=" hidden text-red-500 text-sm font-medium rounded-lg text-center"
+                  className=" hidden text-gray-900 text-sm font-medium rounded-lg text-center"
                 ></p>
                 <p
                   id="MensajeAct"
-                  className=" hidden text-green-500 text-sm font-medium rounded-lg text-center"
+                  className=" hidden text-gray-900 text-sm font-medium rounded-lg text-center"
                 ></p>
-                <label htmlFor="email" className="mb-2 text-sm text-start text-white">
+                <label htmlFor="email" className="mb-2 text-sm text-start text-gray-900">
                   Correo*
                 </label>
                 <input
@@ -72,10 +72,10 @@ function EmailPassword() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Ingresa su correo"
-                  className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded"
+                  className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 rounded"
                 />
                 <button type="submit"
-                  className="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded hover:bg-blue-700 focus:ring-4 focus:ring-purple-blue-100 bg-blue-600"
+                  className="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded bg-red-500 hover:bg-red-600 focus:ring-red-700"
                 >
                   Continuar
                 </button>
