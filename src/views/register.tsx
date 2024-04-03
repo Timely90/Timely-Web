@@ -6,11 +6,15 @@ import { handleSubmitUsers } from "../validation/register";
 
 function Register() {
   const [name, setName] = useState("");
-  const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isVerified, setisVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [rol, setRol] = useState('');
+
+  const handleRolChange = (e:any) => {
+    setRol(e.target.value);
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -35,19 +39,19 @@ function Register() {
       event,
       name,
       email,
-      telefono,
+      rol,
       password,
       isVerified,
       setName,
       setEmail,
-      setTelefono,
+      setRol,
       setPassword,
       setisVerified
     );
 
     if (registrationSuccessful) {
       setTimeout(() => {
-        navigate("/woody-emailverifi");
+        navigate("/timely-emailverifi");
       }, 3000);
     }
   };
@@ -83,22 +87,6 @@ function Register() {
                   Registro
                 </h3>
                 <p className="mb-4 text-gray-900">Ingrese tus datos</p>
-                <a
-                  className="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded text-white bg-gray-900 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300"
-                  href="https://woody-backend.vercel.app/google"
-                >
-                  <img
-                    className="h-5 mr-2"
-                    src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-google.png"
-                    alt=""
-                  />
-                  Registrate con google
-                </a>
-                <div className="flex items-center mb-3">
-                  <hr className="h-0 border-b border-solid border-gray-900 grow" />
-                  <p className="mx-4 text-gray-900">O</p>
-                  <hr className="h-0 border-b border-solid border-gray-900 grow" />
-                </div>
                 <p
                   id="MensajeErrUsuario"
                   className=" hidden text-gray-900 text-sm font-medium rounded-lg text-center"
@@ -129,17 +117,23 @@ function Register() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 rounded"
                 />
-                <label className="mb-2 text-sm text-start text-gray-900">
-                  Teléfono*
+                <label
+                  htmlFor="rol"
+                  className="mb-2 text-sm text-start text-gray-900"
+                >
+                  Eres?*
                 </label>
-                <input
-                  id="telefono"
-                  type="text"
-                  placeholder="Ingresa tu teléfono"
-                  value={telefono}
-                  onChange={(e) => setTelefono(e.target.value)}
-                  className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 rounded"
-                />
+                <select
+                  id="rol"
+                  name="estilo"
+                  value={rol}
+                  onChange={handleRolChange}
+                  className="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 rounded"
+                >
+                  <option value="">Selecciona</option>
+                  <option value="estilista">Estilista</option>
+                  <option value="cliente">Cliente</option>
+                </select>
                 <label className="mb-2 text-sm text-start text-gray-900">
                   Contraseña*
                 </label>
