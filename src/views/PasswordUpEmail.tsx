@@ -7,7 +7,7 @@ import { handleSubmitPassUpEmail } from "../validation/sesion";
 export interface UserData {
     name: string;
     email: string;
-    telefone: string;
+    rol: string;
 }
 
 function PasswordUpEmail() {
@@ -27,18 +27,18 @@ function PasswordUpEmail() {
 
     const navigate = useNavigate();
 
-    // const urlParams = new URLSearchParams(window.location.search);
-    // const token = urlParams.get("token");
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
 
-    // useEffect(() => {
-    //     if (!token) {
-    //         navigate("/");
-    //     }
-    // }, [token, navigate]);
+    useEffect(() => {
+        if (!token) {
+            navigate("/");
+        }
+    }, [token, navigate]);
 
-    // if (!token) {
-    //     return null;
-    // }
+    if (!token) {
+        return null;
+    }
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -56,10 +56,10 @@ function PasswordUpEmail() {
         const emailData = await handleSubmitPassUpEmail(event, password, verPassword, setPassword, setVerPassword);
 
         if (emailData) {
-            const { tokens, name, email, telefone } = emailData;
+            const { tokens, name, email, rol } = emailData;
             localStorage.setItem("ACCESS_TOKEN", tokens);
             const sessionData: UserData = {
-                name, email, telefone
+                name, email, rol
             };
 
             localStorage.setItem(

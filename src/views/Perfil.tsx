@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import Footer from "../components/Footer";
 import { Section } from "../components/Section";
 import Header from "../components/header";
 import HeaderSesion from "../components/headerSesion";
+import { useNavigate } from "react-router-dom";
 
 export interface UserData {
   name: string;
@@ -10,33 +12,42 @@ export interface UserData {
 
 function Perfil() {
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get("token");
-  const name = urlParams.get("name");
-  const email = urlParams.get("email");
+  const token = localStorage.getItem("ACCESS_TOKEN");
 
-  if (token) {
-    localStorage.setItem("ACCESS_TOKEN", token);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/timely-empresas");
+    }
+  }, [token, navigate]);
+
+  if (!token) {
+    return null;
   }
 
-  if (email !== null || name !== null) {
-    const sessionData: UserData = {
-      name: name || '',
-      email: email || '',
-    };
+  const roles = localStorage.getItem("USER_SESSION");
 
-    localStorage.setItem(
-      "USER_SESSION",
-      JSON.stringify(sessionData)
-    );
+  if (roles) {
+    const userSession = JSON.parse(roles);
+    const rol = userSession.rol;
+
+    useEffect(() => {
+      if (rol == "estilista") {
+        navigate("/timely-admin");
+      }
+    }, [rol, navigate]);
+
+    if (rol) {
+      return null;
+    }
+
   }
-
-  const tokens = localStorage.getItem("ACCESS_TOKEN");
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <div className="flex-grow">
-        {tokens ? <HeaderSesion /> : <Header />}
+        {token ? <HeaderSesion /> : <Header />}
         <Section
           tittle="Perfil"
           description="Puedes modificar sus datos y ver sus reservaciones."

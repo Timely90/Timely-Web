@@ -1,37 +1,39 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Section } from "../components/Section";
 import Header from "../components/header";
 import HeaderSesion from "../components/headerSesion";
+import { useEffect } from "react";
 
 export interface UserData {
   name: string;
   email: string;
+  rol: string;
 }
 
 function Empresas() {
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get("token");
-  const name = urlParams.get("name");
-  const email = urlParams.get("email");
-
-  if (token) {
-    localStorage.setItem("ACCESS_TOKEN", token);
-  }
-
-  if (email !== null || name !== null) {
-    const sessionData: UserData = {
-      name: name || '',
-      email: email || '',
-    };
-
-    localStorage.setItem(
-      "USER_SESSION",
-      JSON.stringify(sessionData)
-    );
-  }
+  const navigate = useNavigate();
 
   const tokens = localStorage.getItem("ACCESS_TOKEN");
+
+  const roles = localStorage.getItem("USER_SESSION");
+
+  if (roles) {
+    const userSession = JSON.parse(roles);
+    const rol = userSession.rol;
+
+    useEffect(() => {
+      if (rol == "estilista") {
+        navigate("/timely-admin");
+      }
+    }, [rol, navigate]);
+
+    if (rol) {
+      return null;
+    }
+
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

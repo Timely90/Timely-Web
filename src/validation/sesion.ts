@@ -8,7 +8,7 @@ export interface SesionData {
   token: string;
   name: string;
   email: string;
-  telefone: string;
+  rol: string;
 }
 
 export const handleSubmitUserSesion = async (
@@ -42,10 +42,10 @@ export const handleSubmitUserSesion = async (
     const token = responseSesion.data.token;
     const name = responseSesion.data.name;
     const emaile = responseSesion.data.email;
-    const telefone = responseSesion.data.telefone;
+    const rol = responseSesion.data.rol
     resetForm();
     mostrarMensaje("Cargando ...", MensajeActUsuario);
-    return { token, name, email: emaile, telefone };
+    return { token, name, email: emaile, rol };
   } catch (error: any) {
     const message = error.response?.data.message;
     mostrarMensaje(message, MensajeErrUsuario);
@@ -58,6 +58,7 @@ export interface TokensData {
   token: any;
   name: string;
   email: string;
+  rol: string;
 }
 
 export const handleSubmitVerifi = async (tokens: any): Promise<TokensData | null> => {
@@ -75,9 +76,10 @@ export const handleSubmitVerifi = async (tokens: any): Promise<TokensData | null
     const token = responseSesion.data.token;
     const name = responseSesion.data.name;
     const emaile = responseSesion.data.email;
+    const rol = responseSesion.data.rol;
 
     mostrarMensaje(responseSesion.data.message, MensajeActUsuario);
-    return { token, name, email: emaile };
+    return { token, name, email: emaile, rol };
   } catch (error: any) {
     const message = error.response?.data.message;
     mostrarMensaje(message, MensajeErrUsuario);
@@ -89,7 +91,7 @@ export interface upEmailData {
   tokens: any;
   name: string;
   email: string;
-  telefone: string;
+  rol: string;
 }
 
 export const handleSubmitPassUpEmail = async (
@@ -137,9 +139,9 @@ export const handleSubmitPassUpEmail = async (
     const tokens = responseSesion.data.tokens;
     const name = responseSesion.data.name;
     const emaile = responseSesion.data.email;
-    const telefone = responseSesion.data.telefone;
+    const rol = responseSesion.data.rol;
     
-    return { tokens, name, email: emaile, telefone };
+    return { tokens, name, email: emaile, rol };
   } catch (error: any) {
     const message = error.response?.data.message;
     mostrarMensaje(message, MensajeErr);

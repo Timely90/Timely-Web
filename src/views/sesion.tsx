@@ -10,57 +10,32 @@ import { useNavigate } from "react-router-dom";
 export interface UserData {
   name: string;
   email: string;
+  rol: string;
 }
 
 function Sesion() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
-
   const token = localStorage.getItem("ACCESS_TOKEN");
-
-  useEffect(() => {
-    if (token) {
-      navigate("/timely-empresas");
-    }
-  }, [token, navigate]);
-
-  if (token) {
-    return null;
-  }
 
   const urlParams = new URLSearchParams(window.location.search);
   const tokens = urlParams.get("token");
 
-  async function verificarTokens(tokens: any) {
-    if (tokens) {
-      const tokenData = await handleSubmitVerifi(tokens);
-
-      if (tokenData) {
-        const { token, name, email } = tokenData;
-
-        localStorage.setItem("ACCESS_TOKEN", token);
-
-        const sessionData: UserData = {
-          name,
-          email,
-        };
-
-        localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
-
-        setTimeout(() => {
-          navigate("/timely-empresas");
-        }, 1000);
-      }
-    }
-  }
-
-  verificarTokens(tokens);
-
   useEffect(() => {
+    if (token) {
+      navigate("/timely-empresas");
+      return;
+    }
+
+    if (tokens) {
+      verificarTokens(tokens);
+    }
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -68,11 +43,30 @@ function Sesion() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [token, tokens, navigate, verificarTokens]);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+
+  async function verificarTokens(tokens: any) {
+    const tokenData = await handleSubmitVerifi(tokens);
+
+    if (tokenData) {
+      const { token, name, email, rol } = tokenData;
+
+      localStorage.setItem("ACCESS_TOKEN", token);
+
+      const sessionData: UserData = {
+        name,
+        email,
+        rol
+      };
+
+      localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
+
+      setTimeout(() => {
+        navigate("/timely-empresas");
+      }, 1000);
+    }
+  }
 
   const handleSubmitSesion = async (event: FormEvent) => {
     const sesionData = await handleSubmitUserSesion(
@@ -84,13 +78,14 @@ function Sesion() {
     );
 
     if (sesionData) {
-      const { token, name, email } = sesionData;
+      const { token, name, email, rol } = sesionData;
 
       localStorage.setItem("ACCESS_TOKEN", token);
 
       const sessionData: UserData = {
         name,
         email,
+        rol
       };
 
       localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
@@ -98,7 +93,12 @@ function Sesion() {
       setTimeout(() => {
         navigate("/timely-empresas");
       }, 3000);
+
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -113,9 +113,8 @@ function Sesion() {
             <div className=" ml-2 mr-2 w-full h-full flex items-center xl:p-10">
               <form
                 onSubmit={handleSubmitSesion}
-                className={`mx-auto flex flex-col pb-6 text-center bg-purple-400 rounded-3xl ${
-                  windowWidth < 768 ? "w-full" : ""
-                }`}
+                className={`mx-auto flex flex-col pb-6 text-center bg-purple-400 rounded-3xl ${windowWidth < 768 ? "w-full" : ""
+                  }`}
               >
                 <h3 className="mb-3 text-4xl font-extrabold text-gray-900">
                   Sesión
