@@ -8,11 +8,11 @@ function Footer() {
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <NavLink to="https://timely12.netlify.app/" className="flex items-center mb-4 sm:mb-0">
                         <img src="https://res.cloudinary.com/dwc8h9wfn/image/upload/v1712153542/logo_tezv2v.png" className="h-8 mr-3 rounded-full" />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-gray-900">
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900">
                             Timely
                         </span>
                     </NavLink>
-                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0 dark:text-white text-gray-900">
+                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0 text-gray-900">
                         <li>
                             <Link
                                 to="/timely-empresas"
@@ -32,7 +32,7 @@ function Footer() {
                     </ul>
                 </div>
                 <hr className="my-6 sm:mx-auto border-gray-700 lg:my-8" />
-                <span className="block text-sm sm:text-center dark:text-white text-gray-900">
+                <span className="block text-sm sm:text-center  text-gray-900">
                     © 2024{" "}
                     <Link
                         to="/"
