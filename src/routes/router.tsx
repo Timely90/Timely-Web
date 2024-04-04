@@ -8,12 +8,14 @@ import Error404 from "../views/Error404";
 import PasswordUpEmail from "../views/PasswordUpEmail";
 import Servicios from "../views/Servicios";
 import Empresas from "../views/Empresas";
+import Perfil from "../views/Perfil";
 const router = createBrowserRouter([
 
   { path:"/", element: <Home /> },
 
   { path:"/timely-empresas", element: <Empresas /> },
   { path:"/timely-servicios", element: <Servicios /> },
+  { path:"/timely-perfil", element: <Perfil /> },
 
   { path:"/timely-sesion", element: <Sesion /> },
   { path:"/timely-register", element: <Register /> },

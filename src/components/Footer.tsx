@@ -7,7 +7,7 @@ function Footer() {
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <NavLink to="https://timely12.netlify.app/" className="flex items-center mb-4 sm:mb-0">
-                        <img src="https://res.cloudinary.com/dwc8h9wfn/image/upload/v1712153542/logo_tezv2v.png" className="h-8 mr-3 rounded-full" />
+                        <img src="https://res.cloudinary.com/dwc8h9wfn/image/upload/v1712240342/6094941_gmrpss.png" className="h-8 mr-3 rounded-full" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900">
                             Timely
                         </span>

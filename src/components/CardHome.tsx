@@ -27,7 +27,7 @@ function CardHome() {
       {card.map((item) => (
         <div
           key={item.id}
-          className="max-w-sm border rounded-lg shadow hover:shadow-lg  bg-gray-800 border-gray-700 transition duration-300"
+          className="max-w-sm border rounded-lg shadow hover:shadow-lg bg-gray-800 border-gray-700 transition duration-300"
         >
           <Link to={`woody-${item.enlace.toLowerCase()}`}>
             <img
@@ -45,7 +45,7 @@ function CardHome() {
             <p className="mb-3 font-normal text-gray-400">{item.description}</p>
             <Link
               to={`timely-${item.enlace}`}
-              className="text-white inline-flex items-center px-3 py-2 text-sm font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-red-400 bg-red-400 hover:bg-red-500 focus:ring-red-500"
+              className="text-white inline-flex items-center px-3 py-2 text-sm font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-purple-400 bg-purple-400 hover:bg-purple-500 focus:ring-purple-500"
             >
               Ver más
             </Link>

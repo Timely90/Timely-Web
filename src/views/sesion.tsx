@@ -102,18 +102,18 @@ function Sesion() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-red-400">
+    <div className="flex flex-col min-h-screen bg-purple-400">
       <div className="flex-grow">
         <Header />
       </div>
 
-      <div className="container flex flex-col mx-auto bg-red-400 rounded-lg pt-14 my-5">
+      <div className="container flex flex-col mx-auto bg-purple-400 rounded-lg pt-14 my-5">
         <div className="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
           <div className="flex items-center justify-center w-full lg:p-12">
             <div className=" ml-2 mr-2 w-full h-full flex items-center xl:p-10">
               <form
                 onSubmit={handleSubmitSesion}
-                className={`mx-auto flex flex-col pb-6 text-center bg-red-400 rounded-3xl ${
+                className={`mx-auto flex flex-col pb-6 text-center bg-purple-400 rounded-3xl ${
                   windowWidth < 768 ? "w-full" : ""
                 }`}
               >
@@ -180,7 +180,7 @@ function Sesion() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded bg-red-500 hover:bg-red-600 focus:ring-red-700"
+                  className="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded bg-purple-500 hover:bg-purple-600 focus:ring-purple-700"
                 >
                   Iniciar sesión
                 </button>

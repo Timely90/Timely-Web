@@ -15,7 +15,7 @@ function Header() {
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img
-            src="https://res.cloudinary.com/dwc8h9wfn/image/upload/v1712153542/logo_tezv2v.png"
+            src="https://res.cloudinary.com/dwc8h9wfn/image/upload/v1712240342/6094941_gmrpss.png"
             className="h-8"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-900" />
@@ -26,7 +26,7 @@ function Header() {
           <a href="/timely-sesion">
             <button
               type="button"
-              className="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-4 py-2 text-center"
+              className="text-gray-900 bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2 text-center"
             >
               Empezar
             </button>
@@ -67,7 +67,7 @@ function Header() {
             <li>
               <a
                 href="/"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-red-400 md:hover:bg-transparent md:hover:text-red-500 md:p-0"
+                className="block py-2 px-3 text-gray-900 rounded md:hover:bg-transparent md:hover:text-purple-500 md:p-0"
                 aria-current="page"
               >
                 Inicio
@@ -76,7 +76,7 @@ function Header() {
             <li>
               <a
                 href="/timely-empresas"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 "
+                className="block py-2 px-3 text-gray-900 rounded md:hover:bg-transparent md:hover:text-purple-500 md:p-0 "
               >
                 Empresas
               </a>
@@ -84,7 +84,7 @@ function Header() {
             <li>
               <a
                 href="/timely-servicios"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 "
+                className="block py-2 px-3 text-gray-900 rounded  md:hover:bg-transparent md:hover:text-purple-500 md:p-0 "
               >
                 Servicios
               </a>
