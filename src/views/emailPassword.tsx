@@ -14,7 +14,7 @@ function EmailPassword() {
 
   useEffect(() => {
     if (token) {
-      navigate("/woody-libros");
+      navigate("/timely-empresas");
     }
   }, [token, navigate]);
 
@@ -27,7 +27,7 @@ function EmailPassword() {
 
     if (emailData) {
       setTimeout(() => {
-        navigate("/woody-emailverifi");
+        navigate("/timely-emailverifi");
       }, 3000);
     }
   };

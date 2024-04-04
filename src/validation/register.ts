@@ -2,7 +2,7 @@ import { FormEvent } from "react";
 import { mostrarMensaje } from "../components/toast";
 import axios from "axios";
 
-const api = "https://timely-backend.vercel.app/";
+const api = "https://timely-backend.vercel.app";
 // const api = import.meta.env.VITE_APP_API_URL;
 
 export const handleSubmitUsers = async (

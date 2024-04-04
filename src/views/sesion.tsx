@@ -24,7 +24,7 @@ function Sesion() {
 
   useEffect(() => {
     if (token) {
-      navigate("/");
+      navigate("/timely-empresas");
     }
   }, [token, navigate]);
 
@@ -52,7 +52,7 @@ function Sesion() {
         localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/timely-empresas");
         }, 1000);
       }
     }
@@ -96,7 +96,7 @@ function Sesion() {
       localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
 
       setTimeout(() => {
-        navigate("/woody-libros");
+        navigate("/timely-empresas");
       }, 3000);
     }
   };
