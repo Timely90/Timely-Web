@@ -5,7 +5,7 @@ import Header from "../components/header";
 import HeaderSesion from "../components/headerSesion";
 import { useEffect } from "react";
 
-function Empresas() {
+function Salones() {
 
   const token = localStorage.getItem("ACCESS_TOKEN");
   const roles = localStorage.getItem("USER_SESSION");
@@ -37,4 +37,4 @@ function Empresas() {
   );
 }
 
-export default Empresas;
+export default Salones;

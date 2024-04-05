@@ -13,12 +13,12 @@ function Salon() {
 
   useEffect(() => {
     if (!token) {
-      navigate("/timely-empresas");
+      navigate("/timely-salones");
     } else if (roles) {
       const userSession = JSON.parse(roles);
       const rol = userSession.rol;
       if (rol === "cliente") {
-        navigate("/timely-empresas");
+        navigate("/timely-salones");
       }
     }
   }, [token, roles, navigate]);
@@ -51,23 +51,19 @@ function Salon() {
   // }
 
   const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log(imagen, id, nombre, descripcion, capacidad, ubicacion, imagen);
-    
+    handleSubmitSalon(
+      event, id, nombre, descripcion, capacidad, ubicacion, imagen,
+      setNombre, setDescripcion, setCapacidad, setUbicacion, setIsOpen
+    );
   };
 
-  const handleImagenChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      setImagen(file);
-    }
-  };
-
-  // handleSubmitSalon(
-  //   event, id, nombre, descripcion, capacidad, ubicacion,
-  //   setNombre, setDescripcion, setCapacidad, setUbicacion, setIsOpen
-  // );
+  // const handleImagenChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const files = event.target.files;
+  //   if (files && files.length > 0) {
+  //     const file = files[0];
+  //     setImagen(file);
+  //   }
+  // };
 
   return (
     <div className=" bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 shadow-md">
@@ -190,7 +186,7 @@ function Salon() {
                       id="imagen"
                       accept="image/*"
                       className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      onChange={handleImagenChange}
+                      onChange={(e) => setImagen(e.target.files ? e.target.files[0] : null)}
                     />
                   </div>
 

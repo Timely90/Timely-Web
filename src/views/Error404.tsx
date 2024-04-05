@@ -15,7 +15,7 @@ export function Error404() {
             Lo sentimos, no pudimos encontrar la página que estas buscando.
           </p>
 
-          {token ?  <Link to="/timely-empresas">
+          {token ?  <Link to="/timely-salones">
             <button className="text-black bottom-2.5 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 bg-purple-400 hover:bg-purple-500 focus:ring-purple-800">
               Ir a empresas
             </button>

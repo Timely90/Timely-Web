@@ -21,7 +21,7 @@ export const AuthGuard = () => {
     if (user && !isRedirected) {
       const redirectRoutes = {
         "estilista": "/timely-salon",
-        "cliente": "/timely-empresas",
+        "cliente": "/timely-salones",
       };
 
       const { rol, verificado } = user;

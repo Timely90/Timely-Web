@@ -9,12 +9,12 @@ function Empleados() {
 
   useEffect(() => {
     if (!token) {
-      navigate("/timely-empresas");
+      navigate("/timely-salones");
     } else if (roles) {
       const userSession = JSON.parse(roles);
       const rol = userSession.rol;
       if (rol === "cliente") {
-        navigate("/timely-empresas");
+        navigate("/timely-salones");
       }
     }
   }, [token, roles, navigate]);

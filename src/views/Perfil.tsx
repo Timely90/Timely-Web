@@ -19,7 +19,7 @@ function Perfil() {
 
   useEffect(() => {
     if (!token) {
-      navigate("/timely-empresas");
+      navigate("/timely-salones");
     } else if (roles) {
       const userSession = JSON.parse(roles);
       const rol = userSession.rol;

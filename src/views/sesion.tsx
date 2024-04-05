@@ -28,7 +28,7 @@ function Sesion() {
 
   useEffect(() => {
     if (token) {
-      navigate("/timely-empresas");
+      navigate("/timely-salones");
       return;
     }
 

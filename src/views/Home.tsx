@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
     if (token) {
-      navigate("/timely-empresas");
+      navigate("/timely-salones");
     }
   }, [token, navigate]);
 

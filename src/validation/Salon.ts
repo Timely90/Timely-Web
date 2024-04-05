@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 import axios from "axios";
 import { mostrarMensaje } from "../components/toast";
-const apiUrl = "https://nivelacion.up.railway.app/api/v1";
+const apiUrl = "https://timely-backend.vercel.app";
 
 export const handleSubmitSalon = async (
   event: FormEvent,
@@ -10,6 +10,7 @@ export const handleSubmitSalon = async (
   descripcion: string,
   capacidad: number,
   ubicacion: string,
+  imagen: File | null,
   setNombre: React.Dispatch<React.SetStateAction<string>>,
   setDescripcion: React.Dispatch<React.SetStateAction<string>>,
   setCapacidad: React.Dispatch<React.SetStateAction<number>>,
@@ -41,10 +42,36 @@ export const handleSubmitSalon = async (
     return;
   }
 
-  console.log(id, nombre, descripcion, capacidad, ubicacion,);
+  if (imagen === null) {
+    mostrarMensaje("Seleccione una imagen", mensajeErrForm);
+    return;
+  }
+
+  const dataSalon = {
+    nombre: nombre,
+    descripcion: descripcion,
+    capacidad: capacidad,
+    ubicacion: ubicacion,
+    imagen: imagen
+  };
+
+  if (id === 0) {
+    try {
+      const response = await axios.post(`${apiUrl}/salon`, dataSalon);
+      if (response.status === 200) {
+        mostrarMensaje("Salón agregado.", MensajeSuccToast);
+      }
+    } catch (error) {
+      // if (error.response) {
+      //   mostrarMensaje(error.response.data.error, mensajeErrForm);
+      // } else {
+      //   mostrarMensaje("Ocurrió un error al procesar la solicitud.", mensajeErrForm);
+      // }
+    }
+  }
+
 
 };
-
 
 // function iniciarEstados() {
 //   setIsOpen(false);
@@ -60,40 +87,6 @@ export const handleSubmitSalon = async (
 //     });
 // }
 
-// const dataAsig = {
-//   nombre,
-//   creditos,
-// };
-
-// if (id === 0) {
-//   await axios
-//     .post(`${apiUrl}/asignaturas`, dataAsig)
-//     .then((response) => {
-//       if ((response.data = 200)) {
-//         mostrarMensaje("Asignatura agregada.", MensajeSuccToast);
-//       }
-//       iniciarEstados();
-//     })
-//     .catch((error) => {
-//       if (error) {
-//         mostrarMensaje(error.response.data.error, mensajeErrForm);
-//       }
-//     });
-// } else {
-//   await axios
-//     .put(`${apiUrl}/asignaturas/${id}`, dataAsig)
-//     .then((response) => {
-//       if ((response.data = 200)) {
-//         mostrarMensaje("Asignatura actualizada.", MensajeSuccToast);
-//       }
-//       iniciarEstados();
-//     })
-//     .catch((error) => {
-//       if (error) {
-//         mostrarMensaje(error.response.data.error, mensajeErrForm);
-//       }
-//     });
-// }
 
 // export function handleClickEl(
 //   asignatura: any,

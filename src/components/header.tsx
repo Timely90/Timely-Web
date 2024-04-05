@@ -75,10 +75,10 @@ function Header() {
             </li>
             <li>
               <a
-                href="/timely-empresas"
+                href="/timely-salones"
                 className="block py-2 px-3 text-gray-900 rounded md:hover:bg-transparent md:hover:text-purple-500 md:p-0 "
               >
-                Empresas
+                Salones
               </a>
             </li>
             <li>

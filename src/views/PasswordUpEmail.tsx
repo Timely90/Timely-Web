@@ -67,7 +67,7 @@ function PasswordUpEmail() {
                 JSON.stringify(sessionData)
             );
             setTimeout(() => {
-                navigate("/timely-empresas");
+                navigate("/timely-salones");
             }, 3000);
         }
     };
