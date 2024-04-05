@@ -15,12 +15,12 @@ export function Error404() {
             Lo sentimos, no pudimos encontrar la página que estas buscando.
           </p>
 
-          {token ?  <Link to="/liketechnology-articulos">
-            <button className="text-white bottom-2.5 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 bg-red-400 hover:bg-red-500 focus:ring-blue-800">
+          {token ?  <Link to="/timely-empresas">
+            <button className="text-black bottom-2.5 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 bg-purple-400 hover:bg-purple-500 focus:ring-purple-800">
               Ir a empresas
             </button>
           </Link> :  <Link to="/">
-            <button className="text-white bottom-2.5 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 bg-red-400 hover:bg-red-500 focus:ring-red-500">
+            <button className="text-black bottom-2.5 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 bg-purple-400 hover:bg-purple-500 focus:ring-purple-500">
               Ir a inicio
             </button>
           </Link>}
@@ -28,7 +28,7 @@ export function Error404() {
          
 
         </div>
-        <div className="bg-gradient-to-b to-transparent from-red-400 w-full h-full absolute top-0 left-0 z-0"></div>
+        <div className="bg-gradient-to-b to-transparent from-purple-400 w-full h-full absolute top-0 left-0 z-0"></div>
       </section>
     </div>
   );

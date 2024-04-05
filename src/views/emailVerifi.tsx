@@ -12,12 +12,12 @@ function Emailverifi() {
                         Revise su correo electónico que le hemos enviado un link.
                     </p>
                     <Link to="/timely-sesion">
-                        <button className="text-white bottom-2.5 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 bg-red-500 hover:bg-red-400 focus:ring-red-500">
+                        <button className="text-black bottom-2.5 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 bg-purple-500 hover:bg-purple-400 focus:ring-purple-500">
                             Ir a sesión
                         </button>
                     </Link>
                 </div>
-                <div className="bg-gradient-to-b to-transparent from-red-400 w-full h-full absolute top-0 left-0 z-0"></div>
+                <div className="bg-gradient-to-b to-transparent from-purple-400 w-full h-full absolute top-0 left-0 z-0"></div>
             </section>
         </div>
     );

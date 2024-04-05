@@ -91,7 +91,7 @@ function Sesion() {
       localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
 
       setTimeout(() => {
-        navigate("/timely-empresas");
+        navigate("/authguard");
       }, 3000);
 
     }

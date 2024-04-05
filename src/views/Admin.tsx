@@ -79,7 +79,7 @@ function Admin() {
 
                         <li>
                             <NavLink
-                                to="/adminsubjects"
+                                to="/timely-salon"
                                 className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300`}
                                 onClick={toggleAside}
                             >
@@ -91,7 +91,7 @@ function Admin() {
 
                         <li>
                             <NavLink
-                                to="/adminclassrooms"
+                                to="/timely-serviciosad"
                                 className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300`}
                                 onClick={toggleAside}
                             ><span className="flex-1 ml-3 whitespace-nowrap">Servicios</span>
@@ -100,7 +100,7 @@ function Admin() {
 
                         <li>
                             <NavLink
-                                to="/adminsections"
+                                to="/timely-reservados"
                                 className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300 `}
                                 onClick={toggleAside}
                             ><span className="flex-1 ml-3 whitespace-nowrap">Reservaciones</span>
@@ -109,7 +109,7 @@ function Admin() {
 
                         <li>
                             <NavLink
-                                to="/adminUser"
+                                to="/timely-empleados"
                                 className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300 `}
                                 onClick={toggleAside}
                             ><span className="flex-1 ml-3 whitespace-nowrap">Empleados</span>
@@ -118,7 +118,7 @@ function Admin() {
 
                         <li>
                             <NavLink
-                                to="/perfil"
+                                to="/timely-perfilad"
                                 className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300 `}
                                 onClick={toggleAside}
                             ><span className="flex-1 ml-3 whitespace-nowrap">Perfil</span>

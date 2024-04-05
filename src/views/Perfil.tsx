@@ -13,37 +13,26 @@ export interface UserData {
 function Perfil() {
 
   const token = localStorage.getItem("ACCESS_TOKEN");
+  const roles = localStorage.getItem("USER_SESSION");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
       navigate("/timely-empresas");
+    } else if (roles) {
+      const userSession = JSON.parse(roles);
+      const rol = userSession.rol;
+      if (rol === "estilista") {
+        navigate("/timely-salon");
+      }
     }
-  }, [token, navigate]);
+  }, [token, roles, navigate]);
 
   if (!token) {
     return null;
   }
-
-  const roles = localStorage.getItem("USER_SESSION");
-
-  if (roles) {
-    const userSession = JSON.parse(roles);
-    const rol = userSession.rol;
-
-    useEffect(() => {
-      if (rol == "estilista") {
-        navigate("/timely-admin");
-      }
-    }, [rol, navigate]);
-
-    if (rol) {
-      return null;
-    }
-
-  }
-
+  
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <div className="flex-grow">

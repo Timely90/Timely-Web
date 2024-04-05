@@ -24,7 +24,7 @@ function Servicios() {
 
     useEffect(() => {
       if (rol == "estilista") {
-        navigate("/timely-admin");
+        navigate("/timely-salon");
       }
     }, [rol, navigate]);
 

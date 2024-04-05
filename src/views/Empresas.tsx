@@ -25,7 +25,7 @@ function Empresas() {
 
     useEffect(() => {
       if (rol == "estilista") {
-        navigate("/timely-admin");
+        navigate("/timely-salon");
       }
     }, [rol, navigate]);
 
