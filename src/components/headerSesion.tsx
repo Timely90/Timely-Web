@@ -42,7 +42,7 @@ function HeaderSesion() {
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button
               type="button" onClick={showModal}
-              className="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-4 py-2 text-center "
+              className="text-white bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm px-4 py-2 text-center "
             >
               Salir
             </button>
@@ -81,7 +81,7 @@ function HeaderSesion() {
               <li>
                 <a
                   href="/timely-empresas"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-red-500 md:hover:bg-transparent md:hover:text-red-500 md:p-0"
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-purple-500 md:hover:bg-transparent md:hover:text-purple-500 md:p-0"
                 >
                   Empresas
                 </a>
@@ -89,7 +89,7 @@ function HeaderSesion() {
               <li>
                 <a
                   href="/timely-servicios"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-red-500 md:hover:bg-transparent md:hover:text-red-500 md:p-0"
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-purple-500 md:hover:bg-transparent md:hover:text-purple-500 md:p-0"
                 >
                   Servicios
                 </a>
@@ -97,7 +97,7 @@ function HeaderSesion() {
               <li>
                 <a
                   href="/timely-perfil"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-red-500 md:hover:bg-transparent md:hover:text-red-500 md:p-0"
+                  className="block py-2 px-3 text-gray-900 rounded hover:bg-purple-500 md:hover:bg-transparent md:hover:text-purple-500 md:p-0"
                 >
                   Perfil
                 </a>

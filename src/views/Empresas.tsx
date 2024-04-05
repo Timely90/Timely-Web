@@ -1,44 +1,31 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Section } from "../components/Section";
 import Header from "../components/header";
 import HeaderSesion from "../components/headerSesion";
-// import { useEffect } from "react";
-
-export interface UserData {
-  name: string;
-  email: string;
-  rol: string;
-}
+import { useEffect } from "react";
 
 function Empresas() {
 
-  // const navigate = useNavigate();
+  const token = localStorage.getItem("ACCESS_TOKEN");
+  const roles = localStorage.getItem("USER_SESSION");
 
-  const tokens = localStorage.getItem("ACCESS_TOKEN");
+  const navigate = useNavigate();
 
-  // const roles = localStorage.getItem("USER_SESSION");
-
-  // if (roles) {
-  //   const userSession = JSON.parse(roles);
-  //   const rol = userSession.rol;
-
-  //   useEffect(() => {
-  //     if (rol == "estilista") {
-  //       navigate("/timely-salon");
-  //     }
-  //   }, [rol, navigate]);
-
-  //   if (rol) {
-  //     return null;
-  //   }
-
-  // }
+  useEffect(() => {
+    if (roles) {
+      const userSession = JSON.parse(roles);
+      const rol = userSession.rol;
+      if (rol === "estilista") {
+        navigate("/timely-salon");
+      }
+    }
+  }, [ roles, navigate]);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <div className="flex-grow">
-        {tokens ? <HeaderSesion /> : <Header />}
+        {token ? <HeaderSesion /> : <Header />}
         <Section
           tittle="Empresas"
           description="¡Bienvenido a mi salón de estilismo! Sumérgete en un mundo de creatividad y tendencias que te llevarán a través de transformaciones emocionantes, estilos conmovedores y looks irresistiblemente divertidos."
