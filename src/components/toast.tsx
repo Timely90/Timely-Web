@@ -1,4 +1,3 @@
-
 type ModalProps = {
   isVisible: boolean;
   onClose: () => void;
@@ -41,7 +40,7 @@ export const Modal: React.FC<ModalProps> = ({
         </button>
         <div className="p-6 text-center">
           <svg
-            className="mx-auto mb-4 text-gray-400 w-12 h-12"
+            className="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -66,7 +65,7 @@ export const Modal: React.FC<ModalProps> = ({
           <button
             onClick={onClose}
             type="button"
-            className="text-white bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-500 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+            className="text-white bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-400 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
           >
             No, cancelar
           </button>
@@ -84,4 +83,21 @@ export function mostrarMensaje(mensaje: string, elemento: HTMLElement | null) {
       elemento.classList.add("hidden");
     }, 4000);
   }
+}
+
+export function Toast() {
+  return (
+    <>
+      <div
+        id="toast-success"
+        className=" hidden fixed top-16 right-4 z-50 flex items-center w-full max-w-xs p-4 rounded-lg shadow bg-green-500 text-white"
+        role="alert"
+      ></div>
+      <div
+        id="toast-negative"
+        className="hidden fixed top-16 right-4 z-50 flex items-center w-full max-w-xs p-4 rounded-lg shadow bg-red-500 text-white"
+        role="alert"
+      ></div>
+    </>
+  );
 }

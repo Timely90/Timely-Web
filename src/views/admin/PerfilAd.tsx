@@ -24,12 +24,11 @@ function PerfilAd() {
   }
 
   return (
-    <div
-      style={{ height: "91%" }}
-      className="bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 shadow-md"
-    >
-      <p style={{ textAlign: "center", fontSize: "2rem" }}>Perfil</p>
-    </div>
+    <div className=" bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 shadow-md">
+      <div className="text-black text-2xl mb-4 p-4 rounded-lg shadow-lg bg-gray-200 flex items-center justify-between">
+        <p className="text-center">Perfil</p>
+      </div>
+      </div>
   );
 }
 
