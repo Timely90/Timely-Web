@@ -22,6 +22,7 @@ function Empresas() {
   if (roles) {
     const userSession = JSON.parse(roles);
     const rol = userSession.rol;
+    console.log(rol);
 
     useEffect(() => {
       if (rol == "estilista") {
