@@ -11,11 +11,11 @@ export const handleSubmitSalon = async (
   capacidad: number,
   ubicacion: string,
   imagen: File | null,
-  setNombre: React.Dispatch<React.SetStateAction<string>>,
-  setDescripcion: React.Dispatch<React.SetStateAction<string>>,
-  setCapacidad: React.Dispatch<React.SetStateAction<number>>,
-  setUbicacion: React.Dispatch<React.SetStateAction<string>>,
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  // setNombre: React.Dispatch<React.SetStateAction<string>>,
+  // setDescripcion: React.Dispatch<React.SetStateAction<string>>,
+  // setCapacidad: React.Dispatch<React.SetStateAction<number>>,
+  // setUbicacion: React.Dispatch<React.SetStateAction<string>>,
+  // setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   event.preventDefault();
 
@@ -47,31 +47,35 @@ export const handleSubmitSalon = async (
     return;
   }
 
-  const dataSalon = {
-    nombre: nombre,
-    descripcion: descripcion,
-    capacidad: capacidad,
-    ubicacion: ubicacion,
-    imagen: imagen
-  };
+  const formData = new FormData();
+  formData.append('nombre', nombre);
+  formData.append('descripcion', descripcion);
+  formData.append('capacidad', capacidad.toString());
+  formData.append('ubicacion', ubicacion);
+  formData.append('imagen', imagen);
 
   if (id === 0) {
     try {
-      const response = await axios.post(`${apiUrl}/salon`, dataSalon);
+      const response = await axios.post(`${apiUrl}/salon`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       if (response.status === 200) {
         mostrarMensaje("Salón agregado.", MensajeSuccToast);
       }
     } catch (error) {
-      // if (error.response) {
-      //   mostrarMensaje(error.response.data.error, mensajeErrForm);
-      // } else {
-      //   mostrarMensaje("Ocurrió un error al procesar la solicitud.", mensajeErrForm);
-      // }
+      console.log(error);
     }
   }
-
-
 };
+
+
+// if (error.response) {
+//   mostrarMensaje(error.response.data.error, mensajeErrForm);
+// } else {
+//   mostrarMensaje("Ocurrió un error al procesar la solicitud.", mensajeErrForm);
+// }
 
 // function iniciarEstados() {
 //   setIsOpen(false);

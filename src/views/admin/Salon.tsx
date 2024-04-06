@@ -1,4 +1,4 @@
-import { FormEvent, useState, useEffect, ChangeEvent } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "../../components/toast";
 import { handleSubmitSalon } from "../../validation/Salon";
@@ -53,7 +53,7 @@ function Salon() {
   const handleSubmit = (event: FormEvent) => {
     handleSubmitSalon(
       event, id, nombre, descripcion, capacidad, ubicacion, imagen,
-      setNombre, setDescripcion, setCapacidad, setUbicacion, setIsOpen
+      // setNombre, setDescripcion, setCapacidad, setUbicacion, setIsOpen
     );
   };
 
