@@ -16,7 +16,7 @@ function Contacto() {
             mercado con su nueva y novedosa aplicación.
           </p>
           <Link
-            to={`https://api.whatsapp.com/send?phone=18096760675&text=Hola quiero conversar con Woody Jacques.`}
+            to={`https://api.whatsapp.com/send?phone=18096760675&text=Quiero contactarme con Timely.`}
             target="_blank"
           >
             <button className="text-black bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-purple-400 hover:bg-purple-500 focus:ring-purple-500">

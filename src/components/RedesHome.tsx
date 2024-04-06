@@ -11,7 +11,7 @@ function RedesHome() {
         </p>
         <div className="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
           <Link
-            to={`https://api.whatsapp.com/send?phone=18096760675&text=Hola quiero conversar con Woody Jacques.`}
+            to={`https://api.whatsapp.com/send?phone=18096760675&text=Quiero contactarme con Timely.`}
             className=" w-full text-white sm:w-auto focus:ring-4 focus:outline-none  rounded-lg inline-flex items-center justify-center px-4 py-2.5 bg-green-700 hover:bg-green-600 focus:ring-green-700"
             target="_blank"
           >
