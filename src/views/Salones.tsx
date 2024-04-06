@@ -27,7 +27,7 @@ function Salones() {
       <div className="flex-grow">
         {token ? <HeaderSesion /> : <Header />}
         <Section
-          tittle="Empresas"
+          tittle="Salones"
           description="¡Bienvenido a mi salón de estilismo! Sumérgete en un mundo de creatividad y tendencias que te llevarán a través de transformaciones emocionantes, estilos conmovedores y looks irresistiblemente divertidos."
         />
       </div>
