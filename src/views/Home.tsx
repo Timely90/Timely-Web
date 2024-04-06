@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
     if (token) {
-      navigate("/timely-salones");
+      navigate("/timely-salones-cliente");
     }
   }, [token, navigate]);
 

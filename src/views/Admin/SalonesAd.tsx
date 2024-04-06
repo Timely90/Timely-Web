@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Toast } from "../../components/toast";
 import { handleSubmitSalon } from "../../validation/Salon";
 
-function Salon() {
-
+function SalonesAd() {
 
   const token = localStorage.getItem("ACCESS_TOKEN");
   const roles = localStorage.getItem("USER_SESSION");
@@ -13,12 +12,15 @@ function Salon() {
 
   useEffect(() => {
     if (!token) {
-      navigate("/timely-salones");
+      navigate("/timely-salones-cliente");
     } else if (roles) {
       const userSession = JSON.parse(roles);
       const rol = userSession.rol;
       if (rol === "cliente") {
-        navigate("/timely-salones");
+        navigate("/timely-salones-cliente");
+      }
+      if (rol === "estilista") {
+        navigate("/timely-servicios-estilista");
       }
     }
   }, [token, roles, navigate]);
@@ -68,7 +70,7 @@ function Salon() {
   return (
     <div className=" bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 shadow-md">
       <div className="text-black text-2xl mb-4 p-4 rounded-lg shadow-lg bg-gray-200 flex items-center justify-between">
-        <p className="text-center">Salón</p>
+        <p className="text-center">Salones</p>
         <button
           className="text-white bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-400 font-medium rounded-lg text-sm px-5 py-2.5"
           onClick={toggleModal}
@@ -212,7 +214,7 @@ function Salon() {
   );
 }
 
-export default Salon;
+export default SalonesAd;
 
 // const [isModalVisible, setIsModalVisible] = useState(false);
 

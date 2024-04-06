@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import Footer from "../components/Footer";
-import { Section } from "../components/Section";
-import Header from "../components/header";
-import HeaderSesion from "../components/headerSesion";
+import Footer from "../../components/Footer";
+import { Section } from "../../components/Section";
+import Header from "../../components/header";
+import HeaderSesion from "../../components/headerSesion";
 import { useNavigate } from "react-router-dom";
 
-function Servicios() {
+function ServiciosCliente() {
 
   const token = localStorage.getItem("ACCESS_TOKEN");
   const roles = localStorage.getItem("USER_SESSION");
@@ -17,10 +17,13 @@ function Servicios() {
       const userSession = JSON.parse(roles);
       const rol = userSession.rol;
       if (rol === "estilista") {
-        navigate("/timely-salon");
+        navigate("/timely-servicios-estilista");
+      }
+      if (rol === "administrador") {
+        navigate("/timely-estilistas-administrador");
       }
     }
-  }, [ roles, navigate]);
+  }, [roles, navigate]);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -37,4 +40,4 @@ function Servicios() {
   );
 }
 
-export default Servicios;
+export default ServiciosCliente;

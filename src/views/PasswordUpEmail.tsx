@@ -32,7 +32,7 @@ function PasswordUpEmail() {
 
     useEffect(() => {
         if (!token) {
-            navigate("/");
+            navigate("/timely-salones-cliente");
         }
     }, [token, navigate]);
 
@@ -67,7 +67,7 @@ function PasswordUpEmail() {
                 JSON.stringify(sessionData)
             );
             setTimeout(() => {
-                navigate("/timely-salones");
+                navigate("/timely-salones-cliente");
             }, 3000);
         }
     };

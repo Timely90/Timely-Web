@@ -1,8 +1,8 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Modal } from "../components/toast";
+import { Modal } from "../../components/toast";
 
-function Admin() {
+function EstilistaEst() {
     const navigate = useNavigate();
 
     const [isAsideOpen, setIsAsideOpen] = useState(false);
@@ -79,18 +79,6 @@ function Admin() {
 
                         <li>
                             <NavLink
-                                to="/timely-salon"
-                                className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300`}
-                                onClick={toggleAside}
-                            >
-                                <span className="flex-1 ml-3 whitespace-nowrap">
-                                    Salón
-                                </span>
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink
                                 to="/timely-serviciosad"
                                 className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300`}
                                 onClick={toggleAside}
@@ -161,4 +149,4 @@ function Admin() {
     );
 }
 
-export default Admin;
+export default EstilistaEst;

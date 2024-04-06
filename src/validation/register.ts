@@ -50,6 +50,7 @@ export const handleSubmitUsers = async (
     setisVerify(false);
   }
 
+
   try {
     const responseRegister = await axios.post(`${api}/auth/register`, { name, email, rol, password, isVerified });
     const mensaje = responseRegister.data.message;

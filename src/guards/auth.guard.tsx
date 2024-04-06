@@ -20,8 +20,9 @@ export const AuthGuard = () => {
   useEffect(() => {
     if (user && !isRedirected) {
       const redirectRoutes = {
-        "estilista": "/timely-salon",
-        "cliente": "/timely-salones",
+        "estilista": "/timely-servicios-estilista",
+        "cliente": "/timely-salones-cliente",
+        "administrador": "/timely-salones-cliente",
       };
 
       const { rol, verificado } = user;

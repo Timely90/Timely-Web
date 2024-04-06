@@ -21,6 +21,7 @@ function Sesion() {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
+
   const token = localStorage.getItem("ACCESS_TOKEN");
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -28,7 +29,7 @@ function Sesion() {
 
   useEffect(() => {
     if (token) {
-      navigate("/timely-salones");
+      navigate("/timely-salones-cliente");
       return;
     }
 

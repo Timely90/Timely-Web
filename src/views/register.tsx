@@ -10,11 +10,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [isVerified, setisVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [rol, setRol] = useState('');
-
-  const handleRolChange = (e:any) => {
-    setRol(e.target.value);
-  };
+  const [rol, setRol] = useState('cliente');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -26,7 +22,7 @@ function Register() {
 
   useEffect(() => {
     if (token) {
-      navigate("/");
+      navigate("/timely-salones-cliente");
     }
   }, [token, navigate]);
 
@@ -79,14 +75,22 @@ function Register() {
             <div className="ml-2 mr-2 w-full h-full flex items-center xl:p-10">
               <form
                 onSubmit={handleSubmitRegister}
-                className={`mx-auto flex flex-col pb-6 text-center bg-purple-400 rounded-3xl ${
-                  windowWidth < 768 ? "w-full" : ""
-                }`}
+                className={`mx-auto flex flex-col pb-6 text-center bg-purple-400 rounded-3xl ${windowWidth < 768 ? "w-full" : ""
+                  }`}
               >
-                <h3 className="mb-3 text-4xl font-extrabold text-gray-900">
+                <h3 className="mb-4 text-4xl font-extrabold text-gray-900">
                   Registro
                 </h3>
-                <p className="mb-4 text-gray-900">Ingrese tus datos</p>
+                <a target="_blank"
+                  className="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded text-gray-900 bg-white hover:bg-grey-400 focus:ring-4 focus:ring-grey-300"
+                  href={`https://api.whatsapp.com/send?phone=18096760675&text=Me quiero registrar como estilista.`}
+                >    Registrate como estilista
+                </a>
+                <div className="flex items-center mb-3">
+                  <hr className="h-0 border-b border-solid border-grey-500 grow" />
+                  <p className="mx-4 text-white">CLIENTE</p>
+                  <hr className="h-0 border-b border-solid border-grey-500 grow" />
+                </div>
                 <p
                   id="MensajeErrUsuario"
                   className=" hidden text-gray-900 text-sm font-medium rounded-lg text-center"
@@ -117,23 +121,6 @@ function Register() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 rounded"
                 />
-                <label
-                  htmlFor="rol"
-                  className="mb-2 text-sm text-start text-gray-900"
-                >
-                  Eres?*
-                </label>
-                <select
-                  id="rol"
-                  name="estilo"
-                  value={rol}
-                  onChange={handleRolChange}
-                  className="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 rounded"
-                >
-                  <option value="">Selecciona</option>
-                  <option value="estilista">Estilista</option>
-                  <option value="cliente">Cliente</option>
-                </select>
                 <label className="mb-2 text-sm text-start text-gray-900">
                   Contraseña*
                 </label>
