@@ -15,15 +15,15 @@ function Footer() {
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0 text-gray-900">
                         <li>
                             <Link
-                                to="/timely-empresas"
+                                to="/timely-salones-cliente"
                                 className="mr-4 hover:underline md:mr-6 "
                             >
-                                Empresas
+                                Salones
                             </Link>
                         </li>
                         <li>
                             <Link 
-                                to="/timely-servicios"
+                                to="/timely-servicios-cliente"
                                 className="mr-4 hover:underline md:mr-6 "
                             >
                                 Servicios

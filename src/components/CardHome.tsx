@@ -4,7 +4,7 @@ function CardHome() {
   const card = [
     {
       id: 1,
-      enlace: "empresas",
+      enlace: "salones",
       name: "Empresas",
       description:
         "Sumérgete en un mundo de estilo, innovación y transformación con nuestra amplia selección de servicios y tratamientos.",
@@ -44,7 +44,7 @@ function CardHome() {
             </Link>
             <p className="mb-3 font-normal text-gray-400">{item.description}</p>
             <Link
-              to={`timely-${item.enlace}`}
+              to={`/timely-${item.enlace}-cliente`}
               className="text-white inline-flex items-center px-3 py-2 text-sm font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-purple-400 bg-purple-400 hover:bg-purple-500 focus:ring-purple-500"
             >
               Ver más

@@ -45,8 +45,8 @@ export const handleSubmitUsers = async (
   function resetForm() {
     setName("");
     setEmail("");
-    setRol("");
     setPassword("");
+    setRol("cliente");
     setisVerify(false);
   }
 

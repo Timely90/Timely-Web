@@ -75,7 +75,7 @@ function Header() {
             </li>
             <li>
               <a
-                href="/timely-salones"
+                href="/timely-salones-cliente"
                 className="block py-2 px-3 text-gray-900 rounded md:hover:bg-transparent md:hover:text-purple-500 md:p-0 "
               >
                 Salones
@@ -83,7 +83,7 @@ function Header() {
             </li>
             <li>
               <a
-                href="/timely-servicios"
+                href="/timely-servicios-cliente"
                 className="block py-2 px-3 text-gray-900 rounded  md:hover:bg-transparent md:hover:text-purple-500 md:p-0 "
               >
                 Servicios

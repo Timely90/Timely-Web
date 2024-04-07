@@ -11,10 +11,10 @@ export function Error404() {
           <p className="mb-8 text-lg font-normal lg:text-xl sm:px-16 lg:px-48 text-black">
             Lo sentimos, no pudimos encontrar la página que estas buscando.
           </p>
+          <a href="/timely-salones-cliente"><button className="text-black bottom-2.5 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 bg-purple-400 hover:bg-purple-500 focus:ring-purple-800">
+            Ir a salones
+          </button></a>
 
-          <button className="text-black bottom-2.5 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 bg-purple-400 hover:bg-purple-500 focus:ring-purple-800">
-            Ir a salones 
-          </button>
         </div>
         <div className="bg-gradient-to-b to-transparent from-purple-400 w-full h-full absolute top-0 left-0 z-0"></div>
       </section>
