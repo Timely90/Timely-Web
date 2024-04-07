@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { handleSubmitEst, obtenerUsers } from "../../validation/Admin/Estilista";
 
 function EstilistasAd() {
 
@@ -29,32 +30,67 @@ function EstilistasAd() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [id, setId] = useState(0);
-  const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [capacidad, setCapacidad] = useState(0);
-  const [ubicacion, setUbicacion] = useState("");
-  const [imagen, setImagen] = useState<File | null>(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isVerified, setisVerified] = useState(true);
+  const [rol, setRol] = useState('estilista');
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
-    setNombre("");
-    setDescripcion("");
-    setCapacidad(0);
-    setUbicacion("");
+    setName("");
+    setEmail("");
+    setPassword("");
+    setRol("estilista");
     setId(0);
   };
 
-  // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files[0]) {
-  //     setImagen(e.target.files[0]);
-  //   }
-  // }
+  const handleSubmit = (event: FormEvent) => {
+    handleSubmitEst(
+      event,
+      id,
+      name,
+      email,
+      rol,
+      password,
+      isVerified,
+      setId,
+      setName,
+      setEmail,
+      setRol,
+      setPassword,
+      setisVerified,
+      setIsOpen
+    );
+  };
 
-  const handleSubmit = () => {
-    // handleSubmitSalon(
-    //   event, id, nombre, descripcion, capacidad, ubicacion, imagen,
-    //   // setNombre, setDescripcion, setCapacidad, setUbicacion, setIsOpen
-    // );
+  const [users, setUsers] = useState<
+    { id: number; name: string; email: string, rol: string, isVerifi: boolean }[]
+  >([]);
+
+  useEffect(() => {
+    obtenerUsers()
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleActualizar = (
+    id: number,
+    name: string,
+    email: string,
+  ) => {
+    setId(id);
+    setName(name);
+    setEmail(email);
+    toggleModalAct();
+  };
+
+  const toggleModalAct = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -106,8 +142,12 @@ function EstilistasAd() {
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <p
-                      id="MensajeErrForm"
+                      id="MensajeErrUsuario"
                       className=" hidden text-red-500 text-sm font-medium rounded-lg text-center"
+                    ></p>
+                    <p
+                      id="MensajeActUsuario"
+                      className=" hidden text-green-500 text-sm font-medium rounded-lg text-center"
                     ></p>
                     <label className="block mb-2 text-sm font-medium text-gray-500">
                       Nombre
@@ -116,40 +156,42 @@ function EstilistasAd() {
                       type="text"
                       id="nombre"
                       className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      placeholder="Nombre del salón"
-                      value={nombre}
-                      onChange={(e) => setNombre(e.target.value)}
-                    />
-                  </div>
-                  
-                  <div>
-                   
-                  </div>
-
-                  <div>
-                    <input
-                      type="number"
-                      id="nombre"
-                      className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      placeholder="Capacidad del salón"
-                      value={capacidad}
-                      onChange={(e) => setCapacidad(Number(e.target.value))}
+                      placeholder="Ingrese el nombre"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-500">
-                      Capacidad
+                      Correo
                     </label>
                     <input
-                      type="text"
-                      id="nombre"
+                      type="email"
+                      id="correo"
                       className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      placeholder="Capacidad del salón"
-                      value={capacidad}
-                      onChange={(e) => setCapacidad(Number(e.target.value))}
+                      placeholder="Ingrese el correo"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
+
+                  {id === 0 && (
+                    <div>
+                      <label className="block mb-2 text-sm font-medium text-gray-500">
+                        Contraseña
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+                        placeholder="Ingrese la contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                  )}
+
 
                   <div>
                     <button
@@ -165,6 +207,55 @@ function EstilistasAd() {
           </div>
         </div>
       )}
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-400">
+          <thead className="text-xs text-gray-400 uppercase bg-gray-700">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Nombre
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Correo
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Acción
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((usuario, index) => (
+              <tr
+                key={index}
+                className=" border-b bg-gray-900 border-gray-700"
+              >
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {usuario.name}
+                </th>
+
+                <td className="px-6 py-4">{usuario.email}</td>
+                <td className="px-6 py-4">
+                  <a
+                    href="#"
+                    className="font-medium text-blue-500 hover:underline"
+                    onClick={() =>
+                      handleActualizar(
+                        usuario.id,
+                        usuario.name,
+                        usuario.email
+                      )
+                    }
+                  >
+                    Actualizar
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
