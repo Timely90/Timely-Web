@@ -23,7 +23,6 @@ export const handleSubmitEst = async (
 ) => {
     event.preventDefault();
     const MensajeErrUsuario = document.getElementById("MensajeErrUsuario");
-    const MensajeActUsuario = document.getElementById("MensajeActUsuario");
 
     if (name === "") {
         mostrarMensaje("Ingrese su nombre", MensajeErrUsuario);
@@ -59,25 +58,15 @@ export const handleSubmitEst = async (
         } else {
             responseRegister = await axios.patch(`${api}/auth/update`, { id, name, email });
         }
-        const mensaje = responseRegister.data.message;
-        mostrarMensaje(mensaje, MensajeActUsuario);
+        console.log(responseRegister);
         resetForm();
         window.location.reload();
         return true;
     } catch (error:any) {
         const message = error.response?.data.message;
         mostrarMensaje(message, MensajeErrUsuario);
-        resetForm();
         return false;
     }
     
 };
 
-export async function obtenerUsers() {
-    try {
-        const response = await axios.get(`${api}/auth/users`);
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-}

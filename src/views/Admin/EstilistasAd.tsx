@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleSubmitEst, obtenerUsers } from "../../validation/Admin/Estilista";
+import { handleSubmitEst} from "../../validation/Admin/Estilista";
+import { obtenerUsers } from "../../validation/Admin/Perfil";
 
 function EstilistasAd() {
 

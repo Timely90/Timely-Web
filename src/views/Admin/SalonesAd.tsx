@@ -1,7 +1,7 @@
 import { FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Toast } from "../../components/toast";
-import { handleSubmitSalon } from "../../validation/Salon";
+import { Modal, Toast } from "../../components/toast";
+import { handleClickEl, handleSubmitSalon, obtenerSalon } from "../../validation/Admin/Salon";
 
 function SalonesAd() {
 
@@ -46,26 +46,63 @@ function SalonesAd() {
     setId(0);
   };
 
-  // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files[0]) {
-  //     setImagen(e.target.files[0]);
-  //   }
-  // }
-
   const handleSubmit = (event: FormEvent) => {
     handleSubmitSalon(
-      event, id, nombre, descripcion, capacidad, ubicacion, imagen,
-      // setNombre, setDescripcion, setCapacidad, setUbicacion, setIsOpen
+      event, id, nombre, descripcion, capacidad, ubicacion, imagen, setId,
+      setNombre, setDescripcion, setCapacidad, setUbicacion, setImagen, setIsOpen
     );
   };
 
-  // const handleImagenChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const files = event.target.files;
-  //   if (files && files.length > 0) {
-  //     const file = files[0];
-  //     setImagen(file);
-  //   }
-  // };
+  const [salones, setSalones] = useState<
+    {
+      id: number;
+      nombre: string;
+      descripcion: string;
+      capacidad: number;
+      ubicacion: string;
+      archives: [
+        {
+          id: number;
+          filename: string;
+        }
+      ];
+    }[]
+  >([]);
+
+  useEffect(() => {
+    obtenerSalon()
+      .then((data) => {
+        setSalones(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleActualizar = (
+    id: number,
+    nombre: string,
+    descripcion: string,
+    capacidad: number,
+    ubicacion: string,
+  ) => {
+    setId(id);
+    setNombre(nombre);
+    setDescripcion(descripcion);
+    setCapacidad(capacidad);
+    setUbicacion(ubicacion);
+    toggleModalAct();
+  };
+
+  const toggleModalAct = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
 
   return (
     <div className=" bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 shadow-md">
@@ -207,6 +244,89 @@ function SalonesAd() {
         </div>
       )}
 
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-400">
+          <thead className="text-xs text-gray-400 uppercase bg-gray-700">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Imagen
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Nombre
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Descripción
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Capacidad
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Ubicación
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Acción
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {salones.map((salones, index) => (
+              <tr
+                key={index}
+                className=" border-b bg-gray-900 border-gray-700"
+              >
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  <img className="h-12 w-18" src={salones.archives[0].filename} alt="" />
+                </th>
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {salones.nombre}
+                </th>
+                <td className="px-6 py-4">{salones.descripcion}</td>
+                <td className="px-6 py-4">{salones.capacidad}</td>
+                <td className="px-6 py-4">{salones.ubicacion}</td>
+                <td className="px-6 py-4">
+                  <a
+                    href="#"
+                    className="font-medium text-blue-500 hover:underline"
+                    onClick={() =>
+                      handleActualizar(
+                        salones.id,
+                        salones.nombre,
+                        salones.descripcion,
+                        salones.capacidad,
+                        salones.ubicacion
+                      )
+                    }
+                  >
+                    Actualizar
+                  </a>
+                  <a href="#"
+                    onClick={showModal}
+                    className="ml-8 font-medium text-red-500 hover:underline"
+                  >
+                    Eliminar
+                  </a>
+                  <Modal
+                    onConfirm={() => {
+                      handleClickEl(salones);
+                      showModal();
+                    }}
+                    isVisible={isModalVisible}
+                    onClose={showModal}
+                    message="¿Estás seguro de eliminar la asignatura?"
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
       <div>
         <Toast />
       </div>
@@ -215,83 +335,3 @@ function SalonesAd() {
 }
 
 export default SalonesAd;
-
-// const [isModalVisible, setIsModalVisible] = useState(false);
-
-// const showModal = () => {
-//   setIsModalVisible(!isModalVisible);
-// };
-
-// const toggleModalAct = () => {
-//   setIsOpen(!isOpen);
-// };
-
-// const handleActualizar = (id: number, nombre: string, descripcion: string, ubicacion: string, capacidad: number) => {
-//   setId(id);
-//   setNombre(nombre);
-//   setDescripcion(descripcion);
-//   setCapacidad(capacidad);
-//   setUbicacion(ubicacion);
-//   toggleModalAct();
-// };
-
-// const [asignaturas, setAsignaturas] = useState<
-//   { id: number; nombre: string; creditos: number }[]
-// >([]);
-
-// useEffect(() => {
-//   obtenerAsignaturas()
-//     .then((data) => {
-//       setAsignaturas(data);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }, []);
-
-{/* <div className="flex flex-wrap justify-center">
-        {asignaturas.map((asignatura) => (
-          <div
-            key={asignatura.id}
-            className="ml-10 mt-8 max-w-sm p-6 rounded-lg shadow-lg bg-gray-200"
-          >
-            <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-black">
-                {asignatura.nombre}
-              </h5>
-            </a>
-
-            <p className="mb-3 font-normal text-gray-700">
-              Crédito {asignatura.creditos}
-            </p>
-            <a
-              className="cursor-pointer ml-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-              onClick={() =>
-                handleActualizar(
-                  asignatura.id,
-                  asignatura.nombre,
-                  asignatura.creditos
-                )
-              }
-            >
-              Actualizar
-            </a>
-
-            <a
-              onClick={showModal}
-              className="cursor-pointer ml-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
-            >
-              Eliminar
-            </a>
-            <Modal
-              onConfirm={() => {
-                // handleClickEl(asignatura, setAsignaturas);
-                showModal();
-              }}
-              isVisible={isModalVisible}
-              onClose={showModal}
-              message="¿Estás seguro de eliminar la asignatura?"
-            />
-          </div>
-        ))}
-      </div> */}
