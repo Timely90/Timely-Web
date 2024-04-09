@@ -1,18 +1,20 @@
 import { FormEvent } from "react";
 import axios from "axios";
 import { mostrarMensaje } from "../../components/toast";
-const apiUrl = "https://timely-backend.vercel.app";
+const apiUrl = "https://timely-backend-rouge.vercel.app";
 
 export const handleSubmitSalon = async (
   event: FormEvent,
   id: number,
   nombre: string,
+  email: string,
   descripcion: string,
   capacidad: number,
   ubicacion: string,
   imagen: File | null,
   setId: React.Dispatch<React.SetStateAction<number>>,
   setNombre: React.Dispatch<React.SetStateAction<string>>,
+  setEmail: React.Dispatch<React.SetStateAction<string>>,
   setDescripcion: React.Dispatch<React.SetStateAction<string>>,
   setCapacidad: React.Dispatch<React.SetStateAction<number>>,
   setUbicacion: React.Dispatch<React.SetStateAction<string>>,
@@ -25,6 +27,11 @@ export const handleSubmitSalon = async (
 
   if (nombre === "") {
     mostrarMensaje("Ingrese el nombre", mensajeErrForm);
+    return;
+  }
+
+  if (email === "") {
+    mostrarMensaje("Ingrese el usuario", mensajeErrForm);
     return;
   }
 
@@ -51,6 +58,7 @@ export const handleSubmitSalon = async (
   function resetForm() {
     setId(0);
     setNombre("");
+    setEmail("");
     setDescripcion("");
     setCapacidad(0);
     setUbicacion("");
@@ -60,6 +68,7 @@ export const handleSubmitSalon = async (
 
   const formData = new FormData();
   formData.append('nombre', nombre);
+  formData.append("email", email);
   formData.append('descripcion', descripcion);
   formData.append('capacidad', capacidad.toString());
   formData.append('ubicacion', ubicacion);
