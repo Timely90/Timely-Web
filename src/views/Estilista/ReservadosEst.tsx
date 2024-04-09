@@ -19,6 +19,9 @@ function ReservadosEst() {
       if (rol === "administrador") {
         navigate("/timely-estilistas-administrador");
       }
+      if(rol === "secretario"){
+        navigate("/timely-reservados-secretario");
+      }
     }
   }, [token, roles, navigate]);
 
@@ -31,7 +34,7 @@ function ReservadosEst() {
       <div className="text-black text-2xl mb-4 p-4 rounded-lg shadow-lg bg-gray-200 flex items-center justify-between">
         <p className="text-center">Reservados</p>
       </div>
-      </div>
+    </div>
   );
 }
 

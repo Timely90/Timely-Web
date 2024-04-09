@@ -2,7 +2,7 @@ import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Modal } from "../../components/toast";
 
-function EstilistaEst() {
+function SecretarioSec() {
     const navigate = useNavigate();
 
     const [isAsideOpen, setIsAsideOpen] = useState(false);
@@ -79,16 +79,7 @@ function EstilistaEst() {
 
                         <li>
                             <NavLink
-                                to="/timely-servicios-estilista"
-                                className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300`}
-                                onClick={toggleAside}
-                            ><span className="flex-1 ml-3 whitespace-nowrap">Servicios</span>
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink
-                                to="/timely-reservados-estilista"
+                                to="/timely-reservados-secretario"
                                 className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300 `}
                                 onClick={toggleAside}
                             ><span className="flex-1 ml-3 whitespace-nowrap">Reservaciones</span>
@@ -97,16 +88,7 @@ function EstilistaEst() {
 
                         <li>
                             <NavLink
-                                to="/timely-empleados-estilista"
-                                className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300 `}
-                                onClick={toggleAside}
-                            ><span className="flex-1 ml-3 whitespace-nowrap">Empleados</span>
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink
-                                to="/timely-perfil-estilista"
+                                to="/timely-perfil-secretario"
                                 className={`flex items-center p-2 text-black rounded-lg hover:bg-gray-300 `}
                                 onClick={toggleAside}
                             ><span className="flex-1 ml-3 whitespace-nowrap">Perfil</span>
@@ -149,4 +131,4 @@ function EstilistaEst() {
     );
 }
 
-export default EstilistaEst;
+export default SecretarioSec;

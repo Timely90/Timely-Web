@@ -29,6 +29,9 @@ import AdminstradorAd from "../views/Admin/AdministradorAd";
 import PerfilAd from "../views/Admin/PerfilAd";
 import EstilistasAd from "../views/Admin/EstilistasAd";
 import SalonesAd from "../views/Admin/SalonesAd";
+import SecretarioSec from "../views/Secretario/SecretarioSec";
+import PerfilSec from "../views/Secretario/PerfilSec";
+import ReservadosSec from "../views/Secretario/ReservadosSec";
 
 const router = createBrowserRouter([
 
@@ -46,7 +49,7 @@ const router = createBrowserRouter([
   { path: "/timely-servicios-cliente", element: <ServiciosCliente /> },
 
   // Rutas de Estilista
-  { 
+  {
     path: "/",
     element: <EstilistaEst />,
     children: [
@@ -54,6 +57,16 @@ const router = createBrowserRouter([
       { path: "/timely-empleados-estilista", element: <EmpleadosEst /> },
       { path: "/timely-reservados-estilista", element: <ReservadosEst /> },
       { path: "/timely-servicios-estilista", element: <ServiciosEst /> },
+    ]
+  },
+
+  // Rutas de Secretario
+  {
+    path: "/",
+    element: <SecretarioSec/>,
+    children: [
+      { path: "/timely-perfil-secretario", element: <PerfilSec /> },
+      { path: "/timely-reservados-secretario", element: <ReservadosSec /> },
     ]
   },
 

@@ -23,6 +23,7 @@ export const AuthGuard = () => {
         "estilista": "/timely-servicios-estilista",
         "cliente": "/timely-salones-cliente",
         "administrador": "/timely-salones-cliente",
+        "secretario": "/timely-reservados-secretario",
       };
 
       const { rol, verificado } = user;

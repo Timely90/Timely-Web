@@ -29,6 +29,9 @@ function PerfilCliente() {
       if (rol === "administrador") {
         navigate("/timely-estilistas-administrador");
       }
+      if(rol === "secretario"){
+        navigate("/timely-reservados-secretario");
+      }
     }
   }, [token, roles, navigate]);
 

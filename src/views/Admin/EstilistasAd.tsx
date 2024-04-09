@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleSubmitEst} from "../../validation/Admin/Estilista";
-import { obtenerUsers } from "../../validation/Admin/Perfil";
+import { obtenerUsersEstilista } from "../../validation/Perfil";
+import { handleSubmitRegister } from "../../validation/register";
 
 function EstilistasAd() {
 
@@ -21,6 +21,9 @@ function EstilistasAd() {
       }
       if (rol === "estilista") {
         navigate("/timely-servicios-estilista");
+      }
+      if(rol === "secretario"){
+        navigate("/timely-reservados-secretario");
       }
     }
   }, [token, roles, navigate]);
@@ -47,7 +50,7 @@ function EstilistasAd() {
   };
 
   const handleSubmit = (event: FormEvent) => {
-    handleSubmitEst(
+    handleSubmitRegister(
       event,
       id,
       name,
@@ -55,6 +58,7 @@ function EstilistasAd() {
       rol,
       password,
       isVerified,
+      isOpen,
       setId,
       setName,
       setEmail,
@@ -70,7 +74,7 @@ function EstilistasAd() {
   >([]);
 
   useEffect(() => {
-    obtenerUsers()
+    obtenerUsersEstilista()
       .then((data) => {
         setUsers(data);
       })
@@ -192,7 +196,6 @@ function EstilistasAd() {
                       />
                     </div>
                   )}
-
 
                   <div>
                     <button

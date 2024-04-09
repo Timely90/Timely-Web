@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { handleSubmitContrasena, obtenerUsersId } from "../../validation/Perfil";
 
-function PerfilEst() {
+function PerfilSec() {
   const token = localStorage.getItem("ACCESS_TOKEN");
   const roles = localStorage.getItem("USER_SESSION");
 
@@ -20,8 +20,8 @@ function PerfilEst() {
       if (rol === "administrador") {
         navigate("/timely-estilistas-administrador");
       }
-      if(rol === "secretario"){
-        navigate("/timely-reservados-secretario");
+      if (rol === "estilista") {
+        navigate("/timely-servicios-estilista");
       }
     }
   }, [token, roles, navigate]);
@@ -182,4 +182,4 @@ function PerfilEst() {
   );
 }
 
-export default PerfilEst;
+export default PerfilSec;

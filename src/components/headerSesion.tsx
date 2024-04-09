@@ -32,7 +32,7 @@ function HeaderSesion() {
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="https://res.cloudinary.com/dwc8h9wfn/image/upload/v1712153542/logo_tezv2v.png"
+              src="https://res.cloudinary.com/dwc8h9wfn/image/upload/v1712240342/6094941_gmrpss.png"
               className="h-8"
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap" />

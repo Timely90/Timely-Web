@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleSubmitContrasena, obtenerUsersId } from "../../validation/Admin/Perfil";
+import { handleSubmitContrasena, obtenerUsersId } from "../../validation/Perfil";
 
 function PerfilAd() {
   const token = localStorage.getItem("ACCESS_TOKEN");
@@ -19,6 +19,9 @@ function PerfilAd() {
       }
       if (rol === "estilista") {
         navigate("/timely-servicios-estilista");
+      }
+      if (rol === "secretario") {
+        navigate("/timely-reservados-secretario");
       }
     }
   }, [token, roles, navigate]);
@@ -48,7 +51,7 @@ function PerfilAd() {
       });
   }, []);
 
-  const handleSubmit = (event:FormEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     handleSubmitContrasena(
       event,
       password,
@@ -135,7 +138,7 @@ function PerfilAd() {
                       className=" hidden text-red-500 text-sm font-medium rounded-lg text-center"
                     ></p>
                     <label className="block mb-2 text-sm font-medium text-gray-500">
-                      Contraseña 
+                      Contraseña
                     </label>
                     <div className="relative">
                       <input

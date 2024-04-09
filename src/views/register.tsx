@@ -2,15 +2,17 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/Footer";
-import { handleSubmitUsers } from "../validation/register";
+import { handleSubmitRegister } from "../validation/register";
 
 function Register() {
+  const [id, setId] = useState(0);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isVerified, setisVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [rol, setRol] = useState('cliente');
+  const [isOpen, setIsOpen] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,19 +32,23 @@ function Register() {
     return null;
   }
 
-  const handleSubmitRegister = async (event: FormEvent) => {
-    const registrationSuccessful = await handleSubmitUsers(
+  const handleSubmit = async (event: FormEvent) => {
+    const registrationSuccessful = await handleSubmitRegister(
       event,
+      id,
       name,
       email,
       rol,
       password,
       isVerified,
+      isOpen,
+      setId,
       setName,
       setEmail,
       setRol,
       setPassword,
-      setisVerified
+      setisVerified,
+      setIsOpen,
     );
 
     if (registrationSuccessful) {
@@ -74,7 +80,7 @@ function Register() {
           <div className="flex items-center justify-center w-full lg:p-12">
             <div className="ml-2 mr-2 w-full h-full flex items-center xl:p-10">
               <form
-                onSubmit={handleSubmitRegister}
+                onSubmit={handleSubmit}
                 className={`mx-auto flex flex-col pb-6 text-center bg-purple-400 rounded-3xl ${windowWidth < 768 ? "w-full" : ""
                   }`}
               >

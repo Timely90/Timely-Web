@@ -1,12 +1,21 @@
 import axios from "axios";
 import { FormEvent } from "react";
-import { mostrarMensaje } from "../../components/toast";
+import { mostrarMensaje } from "../components/toast";
 
 const api = "https://timely-backend-rouge.vercel.app";
 
-export async function obtenerUsers() {
+export async function obtenerUsersEstilista() {
     try {
-        const response = await axios.get(`${api}/auth/users`);
+        const response = await axios.get(`${api}/auth/estilista`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function obtenerUsersEmpleado() {
+    try {
+        const response = await axios.get(`${api}/auth/empleado`);
         return response.data;
     } catch (error) {
         throw error;

@@ -2,7 +2,7 @@ import { FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, Toast } from "../../components/toast";
 import { handleClickEl, handleSubmitSalon, obtenerSalon } from "../../validation/Admin/Salon";
-import { obtenerUsers } from "../../validation/Admin/Perfil";
+import { obtenerUsersEstilista } from "../../validation/Perfil";
 
 function SalonesAd() {
 
@@ -22,6 +22,9 @@ function SalonesAd() {
       }
       if (rol === "estilista") {
         navigate("/timely-servicios-estilista");
+      }
+      if(rol === "secretario"){
+        navigate("/timely-reservados-secretario");
       }
     }
   }, [token, roles, navigate]);
@@ -63,7 +66,7 @@ function SalonesAd() {
     {
       id: number;
       nombre: string;
-      email:string;
+      email: string;
       descripcion: string;
       capacidad: number;
       ubicacion: string;
@@ -89,7 +92,7 @@ function SalonesAd() {
   const handleActualizar = (
     id: number,
     nombre: string,
-    email:string,
+    email: string,
     descripcion: string,
     capacidad: number,
     ubicacion: string,
@@ -114,7 +117,7 @@ function SalonesAd() {
   };
 
   useEffect(() => {
-    obtenerUsers()
+    obtenerUsersEstilista()
       .then((data) => {
         setUsers(data);
       })
@@ -307,39 +310,43 @@ function SalonesAd() {
             </tr>
           </thead>
           <tbody>
-            {salones.map((salones, index) => (
+            {salones.map((salon, index) => (
               <tr
                 key={index}
-                className=" border-b bg-gray-900 border-gray-700"
+                className="border-b bg-gray-900 border-gray-700"
               >
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  <img className="h-12 w-18" src={salones.archives[0].filename} alt="" />
+                  {salon.archives && salon.archives.length > 0 && salon.archives[0].filename ? (
+                    <img className="h-12 w-18" src={salon.archives[0].filename} alt="" />
+                  ) : (
+                    <span className="text-white">No hay imagen</span>
+                  )}
                 </th>
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium whitespace-nowrap text-white"
                 >
-                  {salones.nombre}
+                  {salon.nombre}
                 </th>
-                <td className="px-6 py-4">{salones.email}</td>
-                <td className="px-6 py-4">{salones.descripcion}</td>
-                <td className="px-6 py-4">{salones.capacidad}</td>
-                <td className="px-6 py-4">{salones.ubicacion}</td>
+                <td className="px-6 py-4">{salon.email}</td>
+                <td className="px-6 py-4">{salon.descripcion}</td>
+                <td className="px-6 py-4">{salon.capacidad}</td>
+                <td className="px-6 py-4">{salon.ubicacion}</td>
                 <td className="px-6 py-4">
                   <a
                     href="#"
                     className="font-medium text-blue-500 hover:underline"
                     onClick={() =>
                       handleActualizar(
-                        salones.id,
-                        salones.nombre,
-                        salones.email,
-                        salones.descripcion,
-                        salones.capacidad,
-                        salones.ubicacion
+                        salon.id,
+                        salon.nombre,
+                        salon.email,
+                        salon.descripcion,
+                        salon.capacidad,
+                        salon.ubicacion
                       )
                     }
                   >
@@ -353,7 +360,7 @@ function SalonesAd() {
                   </a>
                   <Modal
                     onConfirm={() => {
-                      handleClickEl(salones);
+                      handleClickEl(salon);
                       showModal();
                     }}
                     isVisible={isModalVisible}
@@ -363,6 +370,7 @@ function SalonesAd() {
                 </td>
               </tr>
             ))}
+
           </tbody>
         </table>
       </div>
