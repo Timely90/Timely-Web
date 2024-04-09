@@ -21,7 +21,7 @@ function EmpleadosEst() {
       if (rol === "administrador") {
         navigate("/timely-estilistas-administrador");
       }
-      if(rol === "secretario"){
+      if (rol === "secretario") {
         navigate("/timely-reservados-secretario");
       }
     }
@@ -36,7 +36,7 @@ function EmpleadosEst() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rol, setRol] = useState("");
+  const [rol, setRol] = useState("secretario");
   const [isVerified, setisVerified] = useState(true);
 
   const toggleModal = () => {
@@ -44,7 +44,7 @@ function EmpleadosEst() {
     setName("");
     setEmail("");
     setPassword("");
-    setRol("");
+    setRol("secretario");
     setId(0);
   };
 
@@ -75,6 +75,7 @@ function EmpleadosEst() {
   useEffect(() => {
     obtenerUsersEmpleado()
       .then((data) => {
+        console.log(data);
         setUsers(data);
       })
       .catch((error) => {
@@ -86,12 +87,10 @@ function EmpleadosEst() {
     id: number,
     name: string,
     email: string,
-    rol:string,
   ) => {
     setId(id);
     setName(name);
     setEmail(email);
-    setRol(rol);
     toggleModalAct();
   };
 
@@ -182,20 +181,6 @@ function EmpleadosEst() {
                     />
                   </div>
 
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-500">
-                      Rol
-                    </label>
-                    <select className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      id="selectOption"
-                      value={rol}
-                      onChange={(e) => setRol(e.target.value)}
-                    >
-                      <option value="">Seleccionar...</option>
-                      <option value="secretario">Secretario (a)</option>
-                    </select>
-                  </div>
-
                   {id === 0 && (
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-500">
@@ -269,7 +254,6 @@ function EmpleadosEst() {
                         usuario.id,
                         usuario.name,
                         usuario.email,
-                        usuario.rol
                       )
                     }
                   >

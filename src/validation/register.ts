@@ -58,7 +58,7 @@ export const handleSubmitRegister = async (
     if (id === 0) {
       responseRegister = await axios.post(`${api}/auth/register`, { name, email, rol, password, isVerified });
     } else {
-      responseRegister = await axios.patch(`${api}/auth/update`, { id, name, email });
+      responseRegister = await axios.patch(`${api}/auth/update`, { id, name, email,});
     }
     resetForm();
     console.log(responseRegister);
