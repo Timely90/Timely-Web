@@ -43,24 +43,24 @@ export const handleSubmitContrasena = async (
     setcontrasenaAnterior: React.Dispatch<React.SetStateAction<string>>,
     setnuevaContrasena: React.Dispatch<React.SetStateAction<string>>,
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-) => {
+) =>  {
     event.preventDefault();
 
     const MensajeErr = document.getElementById("MensajeErrCont");
 
     if (password === "") {
-        mostrarMensaje("Ingrese la contraseña anterior", MensajeErr);
-        return;
+        mostrarMensaje("Ingrese su contraseña", MensajeErr);
+        return false;
     }
 
     if (newPassword === "") {
-        mostrarMensaje("Ingrese la nueva contraseña", MensajeErr);
-        return;
+        mostrarMensaje("Repita la contraseña", MensajeErr);
+        return false;
     }
 
     if (password !== newPassword) {
         mostrarMensaje("Las contraseña no coinciden.",MensajeErr);
-        return;
+        return false;
     }
 
     function resetForm() {
@@ -78,12 +78,12 @@ export const handleSubmitContrasena = async (
         });
         resetForm();
         window.location.reload();
-        const tokens = responseSesion.data.tokens;
-        return { tokens };
+        console.log(responseSesion);
+        return true;
     } catch (error: any) {
         const message = error.response?.data.message;
         mostrarMensaje(message, MensajeErr);
         resetForm();
-        return null;
+        return false;
     }
 };

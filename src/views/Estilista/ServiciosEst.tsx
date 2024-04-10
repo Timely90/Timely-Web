@@ -1,6 +1,8 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleSubmitEstilista } from "../../validation/Estilista/Estilista";
+import { handleClickEl, handleSerEstilista, obtenerServicio } from "../../validation/Estilista/ServicioEst";
+import { obtenerSalon } from "../../validation/Admin/Salon";
+import { Modal } from "../../components/toast";
 
 function ServiciosEst() {
   const token = localStorage.getItem("ACCESS_TOKEN");
@@ -33,29 +35,107 @@ function ServiciosEst() {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setId] = useState(0);
   const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
   const [salon, setSalon] = useState("");
+  const [descripcion, setDescripcion] = useState("");
   const [horario, setHorario] = useState("");
+  const [precio, setPrecio] = useState(0);
   const [imagen, setImagen] = useState<File | null>(null);
-
-  const [users, setUsers] = useState<
-    { id: number; name: string; email: string, rol: string, isVerifi: boolean }[]
-  >([]);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
     setNombre("");
-    setDescripcion("");
     setSalon("");
+    setDescripcion("");
     setHorario("");
     setId(0);
   };
 
   const handleSubmit = (event: FormEvent) => {
-    handleSubmitEstilista(
-      event, id, nombre, descripcion, salon, horario, imagen, setId,
-      setNombre, setDescripcion, setSalon, setHorario, setImagen, setIsOpen
+    handleSerEstilista(
+      event, id, nombre, salon, descripcion, horario, precio, imagen, setId,
+      setNombre, setSalon, setDescripcion, setHorario, setPrecio, setImagen, setIsOpen
     );
+  };
+
+  const [servicio, setServicio] = useState<
+    {
+      id: number;
+      nombre: string;
+      salon: string;
+      descripcion: string;
+      horario: string;
+      precio:number;
+      archives: [
+        {
+          id: number;
+          filename: string;
+        }
+      ];
+    }[]
+  >([]);
+
+  useEffect(() => {
+    obtenerServicio()
+      .then((data) => {
+        setServicio(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const [salones, setSalones] = useState<
+    {
+      id: number;
+      nombre: string;
+      email: string;
+      descripcion: string;
+      capacidad: number;
+      ubicacion: string;
+      archives: [
+        {
+          id: number;
+          filename: string;
+        }
+      ];
+    }[]
+  >([]);
+
+  useEffect(() => {
+    obtenerSalon()
+      .then((data) => {
+        setSalones(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const handleActualizar = (
+    id: number,
+    nombre: string,
+    salon: string,
+    descripcion: string,
+    horario: string,
+    precio:number,
+  ) => {
+    setId(id);
+    setNombre(nombre);
+    setSalon(salon);
+    setDescripcion(descripcion);
+    setHorario(horario);
+    setPrecio(precio);
+    toggleModalAct();
+  };
+
+  const toggleModalAct = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -102,7 +182,7 @@ function ServiciosEst() {
               </button>
               <div className="px-6 py-6 lg:px-8">
                 <h3 className="mb-4 text-xl font-medium text-black">
-                  Salón
+                  Servicios
                 </h3>
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
@@ -117,72 +197,67 @@ function ServiciosEst() {
                       type="text"
                       id="nombre"
                       className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      placeholder="Nombre del salón"
+                      placeholder="Nombre del servicio"
                       value={nombre}
                       onChange={(e) => setNombre(e.target.value)}
                     />
                   </div>
+
                   <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-500">Seleccionar usuario</label>
+                    <label className="block mb-2 text-sm font-medium text-gray-500">Salon</label>
                     <select
                       id="usuarios"
                       className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={salon}
+                      onChange={(e) => setSalon(e.target.value)}
                     >
-                      <option value="">Seleccionar usuario</option>
-                      {users.map((user) => (
-                        <option key={user.id} value={user.email}>
-                          {user.email}
+                      <option value="">Seleccionar salon</option>
+                      {salones.map((salon) => (
+                        <option key={salon.id} value={salon.nombre}>
+                          {salon.nombre}
                         </option>
                       ))}
                     </select>
                   </div>
+
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-500">
                       Descripción
                     </label>
                     <textarea
                       id="asignatura"
-                      placeholder="Descripción del salón"
+                      placeholder="Descripción del servicio"
                       className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
                       value={descripcion}
                       onChange={(e) => setDescripcion(e.target.value)}>
                     </textarea>
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-500">
+                      Horario
+                    </label>
                     <input
-                      type="number"
-                      id="Idasignatura"
-                      className="hidden bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      value={id}
-                      onChange={(e) => setId(Number(e.target.value))}
+                      type="text"
+                      id="nombre"
+                      className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+                      placeholder="Horario del servicio"
+                      value={horario}
+                      onChange={(e) => setHorario(e.target.value)}
                     />
                   </div>
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-500">
-                      Capacidad
+                      Precio
                     </label>
                     <input
                       type="number"
                       id="nombre"
                       className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      placeholder="Capacidad del salón"
-                      value={capacidad}
-                      onChange={(e) => setCapacidad(Number(e.target.value))}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-500">
-                      Ubicación
-                    </label>
-                    <input
-                      type="text"
-                      id="ubicacion"
-                      className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      placeholder="Ubucación del salón"
-                      value={ubicacion}
-                      onChange={(e) => setUbicacion(e.target.value)}
+                      placeholder="Horario del servicio"
+                      value={precio}
+                      onChange={(e) => setPrecio(Number(e.target.value))}
                     />
                   </div>
 
@@ -213,6 +288,98 @@ function ServiciosEst() {
           </div>
         </div>
       )}
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-400">
+          <thead className="text-xs text-gray-400 uppercase bg-gray-700">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Imagen
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Nombre
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Salon
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Descripción
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Horario
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Precio
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Acción
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {servicio.map((servicio, index) => (
+              <tr
+                key={index}
+                className="border-b bg-gray-900 border-gray-700"
+              >
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {servicio.archives && servicio.archives.length > 0 && servicio.archives[0].filename ? (
+                    <img className="h-12 w-18" src={servicio.archives[0].filename} alt="" />
+                  ) : (
+                    <span className="text-white">No hay imagen</span>
+                  )}
+                </th>
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium whitespace-nowrap text-white"
+                >
+                  {servicio.nombre}
+                </th>
+                <td className="px-6 py-4">{servicio.salon}</td>
+                <td className="px-6 py-4">{servicio.descripcion}</td>
+                <td className="px-6 py-4">{servicio.horario}</td>
+                <td className="px-6 py-4">{servicio.precio}</td>
+                <td className="px-6 py-4">
+                  <a
+                    href="#"
+                    className="font-medium text-blue-500 hover:underline"
+                    onClick={() =>
+                      handleActualizar(
+                        servicio.id,
+                        servicio.nombre,
+                        servicio.salon,
+                        servicio.descripcion,
+                        servicio.horario,
+                        servicio.precio
+                      )
+                    }
+                  >
+                    Actualizar
+                  </a>
+                  <a href="#"
+                    onClick={showModal}
+                    className="ml-8 font-medium text-red-500 hover:underline"
+                  >
+                    Eliminar
+                  </a>
+                  <Modal
+                    onConfirm={() => {
+                      handleClickEl(salon);
+                      showModal();
+                    }}
+                    isVisible={isModalVisible}
+                    onClose={showModal}
+                    message="¿Estás seguro de eliminar el servicio?"
+                  />
+                </td>
+              </tr>
+            ))}
+
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

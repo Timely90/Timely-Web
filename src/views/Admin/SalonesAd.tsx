@@ -217,13 +217,6 @@ function SalonesAd() {
                       value={descripcion}
                       onChange={(e) => setDescripcion(e.target.value)}>
                     </textarea>
-                    <input
-                      type="number"
-                      id="Idasignatura"
-                      className="hidden bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      value={id}
-                      onChange={(e) => setId(Number(e.target.value))}
-                    />
                   </div>
 
                   <div>
@@ -365,7 +358,7 @@ function SalonesAd() {
                     }}
                     isVisible={isModalVisible}
                     onClose={showModal}
-                    message="¿Estás seguro de eliminar la asignatura?"
+                    message="¿Estás seguro de eliminar el salon?"
                   />
                 </td>
               </tr>
