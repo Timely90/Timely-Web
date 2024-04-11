@@ -115,14 +115,19 @@ function SalonesCliente() {
                   {salon.descripcion}
                 </p>
                 <h5 className="text-xl font-semibold tracking-tight text-white">
-                 {salon.ubicacion}
+                 Ubicación: {salon.ubicacion}
+                </h5>
+                <h5 className="text-xl font-semibold tracking-tight text-white">
+                 Capacidad: {salon.capacidad}
                 </h5>
                 <div className="flex items-center justify-between">
+                  <a href="/timely-servicios-cliente">
                   <div
                     className=" cursor-pointer text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
                   >
                     Ver servicios
                   </div>
+                  </a>
                 </div>
               </div>
             </div>
