@@ -2,10 +2,10 @@
 import axios from "axios";
 const api = "https://timely-backend-rouge.vercel.app";
 
-export async function handleSubmitPaypal(email: string, precio: number) {
+export async function handleSubmitPaypal(email: string, id: number, precio: number) {
     try {
         const token = localStorage.getItem("ACCESS_TOKEN");
-        const responsePaypal = await axios.get(`${api}/paypal/create/${email}?precio=${precio}`, {
+        const responsePaypal = await axios.get(`${api}/paypal/create/${id}?precio=${precio}&email=${email}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -17,3 +17,4 @@ export async function handleSubmitPaypal(email: string, precio: number) {
         throw error;
     }
 }
+

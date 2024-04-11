@@ -58,13 +58,16 @@ function ServiciosCliente() {
       });
   }, []);
 
-  const handlePaypal = async (precio: number) => {
+  const [isCompraLoading, setCompraLoading] = useState(false);
+
+  const handlePaypal = async (id:number, precio: number) => {
+    setCompraLoading(true);
     const datos = localStorage.getItem("USER_SESSION");
 
     if (datos) {
       const userSessionData = JSON.parse(datos);
       const email = userSessionData.email;
-      await handleSubmitPaypal(email, precio);
+      await handleSubmitPaypal(email, id, precio);
     }
 
   };
@@ -86,7 +89,6 @@ function ServiciosCliente() {
               Cargando los servicios...
             </p>
             <svg
-              aria-hidden="true"
               className="mb-2 w-10 h-10 mr-2 animate-spin text-gray-600 fill-blue-600"
               viewBox="0 0 100 101"
               fill="none"
@@ -133,17 +135,30 @@ function ServiciosCliente() {
                   {servicio.precio} DOP
                 </h5>
                 <div className="flex items-center justify-between">
-                  <div
-                    onClick={() =>
-                      handlePaypal(
-                        servicio.precio
-                      )
-                    }
-                    className=" cursor-pointer text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
-                  >
-                    Reservar
-                  </div>
+                  {token ? (
+                    <button
+                      onClick={() =>
+                        handlePaypal(
+                          servicio.id,
+                          servicio.precio
+                        )
+                      }
+                      disabled={isCompraLoading}
+                      className="cursor-pointer text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-purple-600 hover:bg-purple-700 focus:ring-purple-800"
+                    >
+                       {isCompraLoading ? 'Reservando...' : 'Reservar'}
+                    </button>
+                  ) : (
+                    <a href="/timely-sesion">
+                      <button
+                        className="cursor-pointer text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-purple-600 hover:bg-purple-700 focus:ring-purple-800"
+                      >
+                        Reservar
+                      </button>
+                    </a>
+                  )}
                 </div>
+
               </div>
             </div>
           ))

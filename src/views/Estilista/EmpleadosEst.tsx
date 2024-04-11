@@ -75,7 +75,6 @@ function EmpleadosEst() {
   useEffect(() => {
     obtenerUsersEmpleado()
       .then((data) => {
-        console.log(data);
         setUsers(data);
       })
       .catch((error) => {

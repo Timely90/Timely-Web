@@ -32,6 +32,7 @@ import SalonesAd from "../views/Admin/SalonesAd";
 import SecretarioSec from "../views/Secretario/SecretarioSec";
 import PerfilSec from "../views/Secretario/PerfilSec";
 import ReservadosSec from "../views/Secretario/ReservadosSec";
+import ReservacionesCliente from "../views/Cliente/ReserCliente";
 
 const router = createBrowserRouter([
 
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
   { path: "/timely-perfil-cliente", element: <PerfilCliente /> },
   { path: "/timely-salones-cliente", element: <SalonesCliente /> },
   { path: "/timely-servicios-cliente", element: <ServiciosCliente /> },
+  { path: "/timely-reservaciones-cliente", element: <ReservacionesCliente /> },
 
   // Rutas de Estilista
   {

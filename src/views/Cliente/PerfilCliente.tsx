@@ -117,6 +117,13 @@ function PerfilCliente() {
               >
                 Cambiar contraseña
               </div>
+              <a href="/timely-reservaciones-cliente">
+                <div
+                  className=" cursor-pointer text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-purple-600 hover:bg-purple-700 focus:ring-purple-800"
+                >
+                  Reservaciones
+                </div>
+              </a>
             </div>
           </div>
         </div>
