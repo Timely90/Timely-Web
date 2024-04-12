@@ -9,6 +9,7 @@ export interface SesionData {
   name: string;
   email: string;
   rol: string;
+  salon:string;
 }
 
 export const handleSubmitUserSesion = async (
@@ -42,10 +43,11 @@ export const handleSubmitUserSesion = async (
     const token = responseSesion.data.token;
     const name = responseSesion.data.name;
     const emaile = responseSesion.data.email;
-    const rol = responseSesion.data.rol
+    const rol = responseSesion.data.rol;
+    const salon = responseSesion.data.salon;
     resetForm();
     mostrarMensaje("Cargando ...", MensajeActUsuario);
-    return { token, name, email: emaile, rol };
+    return { token, name, email: emaile, rol, salon };
   } catch (error: any) {
     const message = error.response?.data.message;
     mostrarMensaje(message, MensajeErrUsuario);
@@ -59,6 +61,7 @@ export interface TokensData {
   name: string;
   email: string;
   rol: string;
+  salon: string;
 }
 
 export const handleSubmitVerifi = async (tokens: any): Promise<TokensData | null> => {
@@ -77,9 +80,10 @@ export const handleSubmitVerifi = async (tokens: any): Promise<TokensData | null
     const name = responseSesion.data.name;
     const emaile = responseSesion.data.email;
     const rol = responseSesion.data.rol;
+    const salon = responseSesion.data.salon;
 
     mostrarMensaje(responseSesion.data.message, MensajeActUsuario);
-    return { token, name, email: emaile, rol };
+    return { token, name, email: emaile, rol, salon };
   } catch (error: any) {
     const message = error.response?.data.message;
     mostrarMensaje(message, MensajeErrUsuario);

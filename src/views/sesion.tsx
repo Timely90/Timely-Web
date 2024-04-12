@@ -11,6 +11,7 @@ export interface UserData {
   name: string;
   email: string;
   rol: string;
+  salon:string;
 }
 
 function Sesion() {
@@ -51,14 +52,15 @@ function Sesion() {
     const tokenData = await handleSubmitVerifi(tokens);
 
     if (tokenData) {
-      const { token, name, email, rol } = tokenData;
+      const { token, name, email, rol, salon } = tokenData;
 
       localStorage.setItem("ACCESS_TOKEN", token);
 
       const sessionData: UserData = {
         name,
         email,
-        rol
+        rol,
+        salon
       };
 
       localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));
@@ -79,14 +81,15 @@ function Sesion() {
     );
 
     if (sesionData) {
-      const { token, name, email, rol } = sesionData;
+      const { token, name, email, rol, salon } = sesionData;
 
       localStorage.setItem("ACCESS_TOKEN", token);
 
       const sessionData: UserData = {
         name,
         email,
-        rol
+        rol,
+        salon,
       };
 
       localStorage.setItem("USER_SESSION", JSON.stringify(sessionData));

@@ -14,6 +14,7 @@ interface Reserva {
     descripcion: string;
     horario: string;
     precio: number;
+    filename:string;
     email: string;
 }
 
@@ -47,7 +48,7 @@ function ReservacionesCliente() {
     }
 
     const [reserva, setReserva] = useState<
-        { id: number; nombre: string; salon: string, descripcion: string, horario: string, precio: number, email: string }[]
+        { id: number; nombre: string; salon: string, descripcion: string, horario: string, precio: number, filename:string, email: string }[]
     >([]);
 
     useEffect(() => {
@@ -105,7 +106,7 @@ function ReservacionesCliente() {
                             className="hover:bg-gray-700 w-full max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700"
                         >
                             <div>
-                                <img className="rounded-t-lg h-80 w-full" src="https://cloudbeds-fcfc.kxcdn.com/wp-content/uploads/2022/05/iStock-1068158510-scaled-e1669046834676.jpg" />
+                                <img className="rounded-t-lg h-80 w-full" src={reser.filename} />
                             </div>
                             <div className="px-5 pb-5">
                                 <div>

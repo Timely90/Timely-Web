@@ -3,6 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { handleClickEl, obtenerReservaciones } from "../../validation/Reservaciones";
 import { Modal } from "../../components/toast";
 
+interface Reserva {
+  id: number;
+  nombre: string;
+  salon: string;
+  descripcion: string;
+  horario: string;
+  precio: number;
+  filename:string;
+  email: string;
+}
+
 function ReservadosSec() {
   const token = localStorage.getItem("ACCESS_TOKEN");
   const roles = localStorage.getItem("USER_SESSION");
@@ -37,8 +48,14 @@ function ReservadosSec() {
 
   useEffect(() => {
     obtenerReservaciones()
-      .then((data) => {
-        setReserva(data);
+      .then((data: Reserva[]) => {
+        const userSession = localStorage.getItem("USER_SESSION");
+        if (userSession) {
+          const parsedUser = JSON.parse(userSession);
+          const salon = parsedUser.salon;
+          const reservasFiltradas = data.filter(reserva => reserva.salon === salon);
+          setReserva(reservasFiltradas);
+        }
       })
       .catch((error) => {
         console.error(error);
