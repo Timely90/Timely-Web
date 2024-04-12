@@ -2,7 +2,6 @@ import { FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, Toast } from "../../components/toast";
 import { handleClickEl, handleSubmitSalon, obtenerSalon } from "../../validation/Admin/Salon";
-import { obtenerUsersEstilista } from "../../validation/Perfil";
 
 function SalonesAd() {
 
@@ -40,11 +39,20 @@ function SalonesAd() {
   const [capacidad, setCapacidad] = useState(0);
   const [ubicacion, setUbicacion] = useState("");
   const [imagen, setImagen] = useState<File | null>(null);
-  const [email, setEmail] = useState('');
 
-  const [users, setUsers] = useState<
-    { id: number; name: string; email: string, rol: string, isVerifi: boolean }[]
-  >([]);
+  // const [users, setUsers] = useState<
+  //   { id: number; name: string; email: string, rol: string, isVerifi: boolean }[]
+  // >([]);
+
+  // useEffect(() => {
+  //   obtenerUsersEstilista()
+  //     .then((data) => {
+  //       setUsers(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -57,8 +65,8 @@ function SalonesAd() {
 
   const handleSubmit = (event: FormEvent) => {
     handleSubmitSalon(
-      event, id, nombre, email, descripcion, capacidad, ubicacion, imagen, setId,
-      setNombre, setEmail, setDescripcion, setCapacidad, setUbicacion, setImagen, setIsOpen
+      event, id, nombre, descripcion, capacidad, ubicacion, imagen, setId,
+      setNombre, setDescripcion, setCapacidad, setUbicacion, setImagen, setIsOpen
     );
   };
 
@@ -66,7 +74,6 @@ function SalonesAd() {
     {
       id: number;
       nombre: string;
-      email: string;
       descripcion: string;
       capacidad: number;
       ubicacion: string;
@@ -92,14 +99,12 @@ function SalonesAd() {
   const handleActualizar = (
     id: number,
     nombre: string,
-    email: string,
     descripcion: string,
     capacidad: number,
     ubicacion: string,
   ) => {
     setId(id);
     setNombre(nombre);
-    setEmail(email);
     setDescripcion(descripcion);
     setCapacidad(capacidad);
     setUbicacion(ubicacion);
@@ -115,16 +120,6 @@ function SalonesAd() {
   const showModal = () => {
     setIsModalVisible(!isModalVisible);
   };
-
-  useEffect(() => {
-    obtenerUsersEstilista()
-      .then((data) => {
-        setUsers(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
 
   return (
     <div className=" bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 shadow-md">
@@ -189,22 +184,6 @@ function SalonesAd() {
                       value={nombre}
                       onChange={(e) => setNombre(e.target.value)}
                     />
-                  </div>
-                  <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-500">Seleccionar usuario</label>
-                    <select
-                      id="usuarios"
-                      className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    >
-                      <option value="">Seleccionar usuario</option>
-                      {users.map((user) => (
-                        <option key={user.id} value={user.email}>
-                          {user.email}
-                        </option>
-                      ))}
-                    </select>
                   </div>
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-500">
@@ -286,9 +265,6 @@ function SalonesAd() {
                 Nombre
               </th>
               <th scope="col" className="px-6 py-3">
-                Usuario
-              </th>
-              <th scope="col" className="px-6 py-3">
                 Descripción
               </th>
               <th scope="col" className="px-6 py-3">
@@ -324,7 +300,6 @@ function SalonesAd() {
                 >
                   {salon.nombre}
                 </th>
-                <td className="px-6 py-4">{salon.email}</td>
                 <td className="px-6 py-4">{salon.descripcion}</td>
                 <td className="px-6 py-4">{salon.capacidad}</td>
                 <td className="px-6 py-4">{salon.ubicacion}</td>
@@ -336,7 +311,6 @@ function SalonesAd() {
                       handleActualizar(
                         salon.id,
                         salon.nombre,
-                        salon.email,
                         salon.descripcion,
                         salon.capacidad,
                         salon.ubicacion

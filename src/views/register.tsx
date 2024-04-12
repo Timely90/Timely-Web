@@ -12,6 +12,7 @@ function Register() {
   const [isVerified, setisVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [rol, setRol] = useState('cliente');
+  const [salon, setSalon] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -38,6 +39,7 @@ function Register() {
       id,
       name,
       email,
+      salon,
       rol,
       password,
       isVerified,
@@ -45,6 +47,7 @@ function Register() {
       setId,
       setName,
       setEmail,
+      setSalon,
       setRol,
       setPassword,
       setisVerified,

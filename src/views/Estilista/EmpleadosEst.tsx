@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { obtenerUsersEmpleado } from "../../validation/Perfil";
 import { handleSubmitRegister } from "../../validation/register";
+import { obtenerSalon } from "../../validation/Admin/Salon";
 
 function EmpleadosEst() {
   const token = localStorage.getItem("ACCESS_TOKEN");
@@ -19,7 +20,7 @@ function EmpleadosEst() {
         navigate("/timely-salones-cliente");
       }
       if (rol === "administrador") {
-        navigate("/timely-estilistas-administrador");
+        navigate("/timely-salones-administrador");
       }
       if (rol === "secretario") {
         navigate("/timely-reservados-secretario");
@@ -35,6 +36,7 @@ function EmpleadosEst() {
   const [id, setId] = useState(0);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [salon, setSalon] = useState("");
   const [password, setPassword] = useState("");
   const [rol, setRol] = useState("secretario");
   const [isVerified, setisVerified] = useState(true);
@@ -43,6 +45,7 @@ function EmpleadosEst() {
     setIsOpen(!isOpen);
     setName("");
     setEmail("");
+    setSalon("");
     setPassword("");
     setRol("secretario");
     setId(0);
@@ -54,6 +57,7 @@ function EmpleadosEst() {
       id,
       name,
       email,
+      salon,
       rol,
       password,
       isVerified,
@@ -61,6 +65,7 @@ function EmpleadosEst() {
       setId,
       setName,
       setEmail,
+      setSalon,
       setRol,
       setPassword,
       setisVerified,
@@ -69,7 +74,7 @@ function EmpleadosEst() {
   };
 
   const [users, setUsers] = useState<
-    { id: number; name: string; email: string, rol: string, isVerifi: boolean }[]
+    { id: number; name: string; email: string, salon: string, rol: string, isVerifi: boolean }[]
   >([]);
 
   useEffect(() => {
@@ -86,16 +91,38 @@ function EmpleadosEst() {
     id: number,
     name: string,
     email: string,
+    salon:string,
   ) => {
     setId(id);
     setName(name);
     setEmail(email);
+    setSalon(salon);
     toggleModalAct();
   };
 
   const toggleModalAct = () => {
     setIsOpen(!isOpen);
   };
+
+  const [salones, setSalones] = useState<
+    {
+      id: number;
+      nombre: string;
+      descripcion: string;
+      capacidad: number;
+      ubicacion: string;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    obtenerSalon()
+      .then((data) => {
+        setSalones(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <div className=" bg-white p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 shadow-md">
@@ -180,6 +207,23 @@ function EmpleadosEst() {
                     />
                   </div>
 
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-500">Seleccionar salon</label>
+                    <select
+                      id="salon"
+                      className="bg-gray-600 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+                      value={salon}
+                      onChange={(e) => setSalon(e.target.value)}
+                    >
+                      <option value="">Seleccionar salon</option>
+                      {salones.map((salon) => (
+                        <option key={salon.id} value={salon.nombre}>
+                          {salon.nombre}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
                   {id === 0 && (
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-500">
@@ -225,6 +269,9 @@ function EmpleadosEst() {
                 Rol
               </th>
               <th scope="col" className="px-6 py-3">
+                Salon
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Acción
               </th>
             </tr>
@@ -244,6 +291,7 @@ function EmpleadosEst() {
 
                 <td className="px-6 py-4">{usuario.email}</td>
                 <td className="px-6 py-4">{usuario.rol}</td>
+                <td className="px-6 py-4">{usuario.salon}</td>
                 <td className="px-6 py-4">
                   <a
                     href="#"
@@ -253,6 +301,7 @@ function EmpleadosEst() {
                         usuario.id,
                         usuario.name,
                         usuario.email,
+                        usuario.salon
                       )
                     }
                   >

@@ -10,6 +10,7 @@ export const handleSubmitRegister = async (
   id: number,
   name: string,
   email: string,
+  salon: string,
   rol: string,
   password: string,
   isVerified: boolean,
@@ -17,6 +18,7 @@ export const handleSubmitRegister = async (
   setId: React.Dispatch<React.SetStateAction<number>>,
   setName: React.Dispatch<React.SetStateAction<string>>,
   setEmail: React.Dispatch<React.SetStateAction<string>>,
+  setSalon: React.Dispatch<React.SetStateAction<string>>,
   setRol: React.Dispatch<React.SetStateAction<string>>,
   setPassword: React.Dispatch<React.SetStateAction<string>>,
   setisVerify: React.Dispatch<React.SetStateAction<boolean>>,
@@ -26,18 +28,25 @@ export const handleSubmitRegister = async (
   const MensajeErrUsuario = document.getElementById("MensajeErrUsuario");
 
   if (name === "") {
-    mostrarMensaje("Ingrese su nombre", MensajeErrUsuario);
+    mostrarMensaje("Ingrese el nombre", MensajeErrUsuario);
     return false;
   }
 
   if (email === "") {
-    mostrarMensaje("Ingrese su correo", MensajeErrUsuario);
+    mostrarMensaje("Ingrese el correo", MensajeErrUsuario);
     return false;
+  }
+
+  if(rol !== "cliente"){
+    if (salon === "") {
+      mostrarMensaje("Ingrese el salon", MensajeErrUsuario);
+      return false;
+    }
   }
 
   if (id === 0) {
     if (password === "") {
-      mostrarMensaje("Ingrese su contraseña", MensajeErrUsuario);
+      mostrarMensaje("Ingrese la contraseña", MensajeErrUsuario);
       return false;
     }
   }
@@ -46,6 +55,7 @@ export const handleSubmitRegister = async (
     setId(0);
     setName("");
     setEmail("");
+    setSalon("");
     setPassword("");
     setRol("");
     setisVerify(false);
@@ -56,7 +66,7 @@ export const handleSubmitRegister = async (
   try {
     let responseRegister;
     if (id === 0) {
-      responseRegister = await axios.post(`${api}/auth/register`, { name, email, rol, password, isVerified });
+      responseRegister = await axios.post(`${api}/auth/register`, { name, email, rol, salon, password, isVerified });
     } else {
       responseRegister = await axios.patch(`${api}/auth/update`, { id, name, email,});
     }

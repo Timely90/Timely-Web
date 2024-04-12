@@ -22,7 +22,7 @@ function ServiciosCliente() {
         navigate("/timely-servicios-estilista");
       }
       if (rol === "administrador") {
-        navigate("/timely-estilistas-administrador");
+        navigate("/timely-salones-administrador");
       }
       if (rol === "secretario") {
         navigate("/timely-reservados-secretario");
@@ -58,10 +58,7 @@ function ServiciosCliente() {
       });
   }, []);
 
-  const [isCompraLoading, setCompraLoading] = useState(false);
-
   const handlePaypal = async (id:number, precio: number) => {
-    setCompraLoading(true);
     const datos = localStorage.getItem("USER_SESSION");
 
     if (datos) {
@@ -143,10 +140,9 @@ function ServiciosCliente() {
                           servicio.precio
                         )
                       }
-                      disabled={isCompraLoading}
                       className="cursor-pointer text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-purple-600 hover:bg-purple-700 focus:ring-purple-800"
                     >
-                       {isCompraLoading ? 'Reservando...' : 'Reservar'}
+                       Reservar
                     </button>
                   ) : (
                     <a href="/timely-sesion">

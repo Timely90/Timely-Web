@@ -18,7 +18,7 @@ function PerfilSec() {
         navigate("/timely-salones-cliente");
       }
       if (rol === "administrador") {
-        navigate("/timely-estilistas-administrador");
+        navigate("/timely-salones-administrador");
       }
       if (rol === "estilista") {
         navigate("/timely-servicios-estilista");

@@ -28,7 +28,7 @@ function PerfilCliente() {
         navigate("/timely-servicios-estilista");
       }
       if (rol === "administrador") {
-        navigate("/timely-estilistas-administrador");
+        navigate("/timely-salones-administrador");
       }
       if (rol === "secretario") {
         navigate("/timely-reservados-secretario");
@@ -83,13 +83,14 @@ function PerfilCliente() {
       </div>
 
       <div className="flex flex-wrap justify-center gap-8 mt-10 ml-4 mr-4">
+
         <div
           className="hover:bg-gray-700 w-full max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700"
         >
           <div>
             <img
               className="rounded-t-lg w-96 h-64"
-              src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png"
+              src="https://cdn-icons-png.flaticon.com/512/1053/1053244.png"
             />
           </div>
           <div className="px-5 pb-5">
@@ -117,6 +118,31 @@ function PerfilCliente() {
               >
                 Cambiar contraseña
               </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div
+          className="hover:bg-gray-700 w-full max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700"
+        >
+          <div>
+            <img
+              className="rounded-t-lg w-96 h-64"
+              src="https://www.hotelogix.com/images/get-more-done-for-less.png"
+            />
+          </div>
+          <div className="px-5 pb-5">
+            <div>
+              <div>
+                <h5 className="text-xl font-semibold tracking-tight  text-white">
+                  Tus reservaciones
+                </h5>
+              </div>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-3xl font-bold text-white">
+              </span>
               <a href="/timely-reservaciones-cliente">
                 <div
                   className=" cursor-pointer text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-purple-600 hover:bg-purple-700 focus:ring-purple-800"

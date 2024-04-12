@@ -5,6 +5,7 @@ import Header from "../../components/header";
 import HeaderSesion from "../../components/headerSesion";
 import { useNavigate } from "react-router-dom";
 import { obtenerReservaciones } from "../../validation/Reservaciones";
+import { Link } from "react-router-dom";
 
 interface Reserva {
     id: number;
@@ -33,8 +34,8 @@ function ReservacionesCliente() {
                 navigate("/timely-servicios-estilista");
             }
             if (rol === "administrador") {
-                navigate("/timely-estilistas-administrador");
-            }
+                navigate("/timely-salones-administrador");
+              }
             if (rol === "secretario") {
                 navigate("/timely-reservados-secretario");
             }
@@ -48,7 +49,7 @@ function ReservacionesCliente() {
     const [reserva, setReserva] = useState<
         { id: number; nombre: string; salon: string, descripcion: string, horario: string, precio: number, email: string }[]
     >([]);
-    
+
     useEffect(() => {
         obtenerReservaciones()
             .then((data: Reserva[]) => {
@@ -64,7 +65,7 @@ function ReservacionesCliente() {
                 console.error(error);
             });
     }, []);
-    
+
     return (
         <div className="flex flex-col min-h-screen bg-white">
             <div className="flex-grow">
@@ -122,13 +123,16 @@ function ReservacionesCliente() {
                                     {reser.precio} Dop
                                 </h5>
                                 <div className="flex items-center justify-between">
-                                    <a href="/timely-servicios-cliente">
+                                    <Link
+                                        to={`https://api.whatsapp.com/send?phone=18096760675&text=Quiero contactarme con Timely.`}
+                                        target="_blank"
+                                    >
                                         <div
                                             className=" cursor-pointer text-white  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-purple-600 hover:bg-purple-700 focus:ring-purple-800"
                                         >
                                             Soluciones
                                         </div>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

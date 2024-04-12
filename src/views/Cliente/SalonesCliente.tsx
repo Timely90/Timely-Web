@@ -21,7 +21,7 @@ function SalonesCliente() {
         navigate("/timely-servicios-estilista");
       }
       if (rol === "administrador") {
-        navigate("/timely-estilistas-administrador");
+        navigate("/timely-salones-administrador");
       }
       if (rol === "secretario") {
         navigate("/timely-reservados-secretario");

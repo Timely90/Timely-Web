@@ -22,7 +22,7 @@ export const AuthGuard = () => {
       const redirectRoutes = {
         "estilista": "/timely-servicios-estilista",
         "cliente": "/timely-salones-cliente",
-        "administrador": "/timely-salones-cliente",
+        "administrador": "/timely-salones-administrador",
         "secretario": "/timely-reservados-secretario",
       };
 
