@@ -87,11 +87,6 @@ function Register() {
                 <h3 className="mb-4 text-4xl font-extrabold text-gray-900">
                   Registro
                 </h3>
-                <a target="_blank"
-                  className="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded text-gray-900 bg-white hover:bg-grey-400 focus:ring-4 focus:ring-grey-300"
-                  href={`https://api.whatsapp.com/send?phone=18096760675&text=Me quiero registrar como estilista.`}
-                >    Registrate como estilista
-                </a>
                 <div className="flex items-center mb-3">
                   <hr className="h-0 border-b border-solid border-grey-500 grow" />
                   <p className="mx-4 text-white">CLIENTE</p>
